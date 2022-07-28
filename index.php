@@ -1,2 +1,2 @@
 <?php
-echo "Selamat Datang";
+echo "Masuk";
