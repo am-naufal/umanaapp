@@ -1,18 +1,30 @@
 <?php
-// include_once('pages/login/sign-in.php');
-
-include "./inc/koneksi.php";
+include_once "../../inc/koneksi.php";
 session_start();
-$host  = $_SERVER['HTTP_HOST'];
-$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-$extra = 'pages/login/sing-in.php';
-header("Location: http://$host$uri/$extra");
-// if (!empty($_SESSION['id_user'])) {
+$host = $_SERVER['HTTP_HOST'];
+$host .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
+if ($_SESSION['status_login'] == 'true') {
+    if ($_SESSION['level'] == 'admin') {
+        // buka dashboard admin
+        header('location: http://' . $host . 'home/home.php');
+    } elseif ($_SESSION['level'] == 'admin') {
+        // buka acsess umana 
+        header('location: http://' . $host . 'login/absen.php');
+    }
+} else {
+    //buka page login / sing-up
+
+    header('location: http://' . $host . 'login/sign-in.php');
+}
+
+?>
+
+<!-- // if (!empty($_SESSION['id_user'])) {
 
 // } else {
-//     if (file_exists('./aksi/login.php')) {
-//         include "./aksi/absen.php";
-//     } else {
-//         echo "Konfigurasi tidak berhasil";
-//     }
+// if (file_exists('./aksi/login.php')) {
+// include "./aksi/absen.php";
+// } else {
+// echo "Konfigurasi tidak berhasil";
 // }
+// } -->
