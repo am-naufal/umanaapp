@@ -26,7 +26,7 @@ if ($cekUsers->num_rows > 0) {
     $cekumana = __ambil($db, "tb_umana", "*", $whereumana);
     if ($cekumana->num_rows > 0) {
         $p = $cekumana->fetch_object();
-        $_SESSION['iduser'] = $p->niu;
+        $_SESSION['id_user'] = $p->niu;
         $_SESSION['nama'] = $p->nama;
         $_SESSION['level'] = 'umana';
         $_SESSION['status_login'] = true;
