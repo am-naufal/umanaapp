@@ -33,7 +33,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                include "./../inc/koneksi.php";
+                                include "../inc/koneksi.php";
                                 $tampil = $koneksi->query("SELECT * FROM tb_umana AS a
                                                                     LEFT JOIN tb_instansi AS b ON a.kd_instansi=b.kd_instansi
                                                                     LEFT JOIN tb_status AS c ON a.kd_status=c.kd_status
