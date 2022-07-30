@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../umana/tabel_umana.php">
+                    <a class="nav-link" href="../pages/umana/tabel_umana.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-books text-warning text-sm opacity-10"></i>
                         </div>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../instansi/tabel_instansi.php">
+                    <a class="nav-link" href="../pages/instansi/tabel_instansi.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-building text-info text-sm opacity-10"></i>
                         </div>
@@ -69,7 +69,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../jabatan/tabel_jabatan.php">
+                    <a class="nav-link " href="../pages/jabatan/tabel_jabatan.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-badge text-primary text-sm opacity-10"></i>
                         </div>
@@ -77,7 +77,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../user/tabel_user.php">
+                    <a class="nav-link " href="../pages/user/tabel_user.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-danger text-sm opacity-10"></i>
                         </div>
