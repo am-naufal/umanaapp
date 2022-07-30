@@ -50,7 +50,7 @@
             <div class="card">
                 <div class="card-header pb-0">
                 </div>
-                <?php include "./inc/koneksi.php"; ?>
+                <?php include "../inc/koneksi.php"; ?>
                 <form class="card-body" method="post" action="">
                     <div class="row">
                         <div class="col-md-6">
