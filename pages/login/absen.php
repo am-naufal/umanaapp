@@ -4,21 +4,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
         SIKENA' | Sistem Kehadiran Umana'
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="../../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -44,7 +44,7 @@
                                     <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="../home/home.php">
                                         <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
                                         <?php
-                                        include '../../inc/_day.php';
+                                        include '../inc/_day.php';
 
                                         echo __day() . date(',d F Y'); ?>
                                     </a>
@@ -54,7 +54,7 @@
                                         <i class="fa fa-user opacity-6 text-dark me-1"></i>
                                         <?php
                                         session_start();
-                                        echo $_SESSION['id_user']; ?>
+                                        echo $_SESSION['iduser']; ?>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -89,32 +89,9 @@
                                     <p class="mb-0">Masukkan Nomor Induk Umana'</p>
                                 </div>
                                 <div class="card-body">
-                                    <?php
-                                    include_once '../../inc/_database.php';
-                                    $db = __database();
-                                    $where = [
-                                        'niu' => $_SESSION['id_user']
-                                    ];
-                                    $query = __ambil($db, "tb_umana", "*", $where);
-                                    $r = $query->fetch_object();
-                                    ?>
                                     <form role="form">
-                                        <div class="mb-1">
-                                            <label class="col-sm-2 col-form-label">Nama</label>
-                                            <input type="text" class="form-control form-control-lg" value="<?php echo $r->nama; ?>" readonly>
-                                        </div>
-                                        <div class="mb-1">
-                                            <?php
-                                            $wherejbtn = ['kd_jabatan' => $r->kd_jabatan];
-                                            $query = __ambil($db, "tb_jabatan", "*", $wherejbtn);
-                                            $q = $query->fetch_object();
-                                            ?>
-                                            <label class="col-form-label">Jabatan</label>
-                                            <input type="text" class="form-control form-control-lg" value="<?php echo $q->nama_jabatan; ?>" readonly>
-                                        </div>
-                                        <div class="mb-1">
-                                            <label class=" col-form-label">Tempat, Tanggal Lahir</label>
-                                            <input type="text" class="form-control form-control-lg" value="<?php echo $r->tmp_lahir . ", " . $r->tgl_lahir; ?>" readonly>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control form-control-lg" placeholder="No Induk Umana'">
                                         </div>
                                         <div class="text-center">
                                             <button type="button" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Absen</button>
@@ -143,10 +120,10 @@
         </section>
     </main>
     <!--   Core JS Files   -->
-    <script src="../../assets/js/core/popper.min.js"></script>
-    <script src="../../assets/js/core/bootstrap.min.js"></script>
-    <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -159,7 +136,7 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 
 </html>
