@@ -7,14 +7,13 @@ if ($_SESSION['status_login'] == 'true') {
     if ($_SESSION['level'] == 'admin') {
         // buka dashboard admin
         header('location: http://' . $host . 'home/home.php');
-    } elseif ($_SESSION['level'] == 'admin') {
+    } elseif ($_SESSION['level'] == 'umana') {
         // buka acsess umana 
-        header('location: http://' . $host . 'login/absen.php');
+        header('location: http://' . $host . 'pages/login/absen.php');
     }
 } else {
     //buka page login / sing-up
-
-    header('location: http://' . $host . 'login/sign-in.php');
+    header('location: http://' . $host . 'pages/login/sign-in.php');
 }
 
 ?>
