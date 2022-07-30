@@ -1,5 +1,5 @@
-<?php include "./inc/koneksi.php"; ?>
-<?php include "./inc/sidebar.php"; ?>
+<?php include "../inc/koneksi.php"; ?>
+<?php include "../inc/sidebar.php"; ?>
 <!-- End Navbar -->
 <div class="card shadow-lg mx-4 card-profile-bottom">
     <div class="card-body p-3">
@@ -50,7 +50,7 @@
             <div class="card">
                 <div class="card-header pb-0">
                 </div>
-                <?php include "./inc/koneksi.php";
+                <?php include "../inc/koneksi.php";
                 $tampil = $koneksi->query("SELECT * FROM tb_umana WHERE niu='$_GET[id]'");
                 $r = $tampil->fetch_object();
                 ?>
@@ -185,5 +185,5 @@
             </div>
         </div>
     </div>
-    <?php include "./inc/footer.php"; ?>
+    <?php include "../inc/footer.php"; ?>
 </div>
