@@ -4,21 +4,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
     <title>
         SIKENA'
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="../../assets/css/argon-dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -29,7 +29,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href="../home/home.php" target="_blank">
-                <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="../../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">SIKENA'</span>
             </a>
         </div>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../pages/instansi/tabel_instansi.php">
+                    <a class="nav-link" href="../instansi/tabel_instansi.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-building text-info text-sm opacity-10"></i>
                         </div>
@@ -69,7 +69,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../pages/jabatan/tabel_jabatan.php">
+                    <a class="nav-link " href="../jabatan/tabel_jabatan.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-badge text-primary text-sm opacity-10"></i>
                         </div>
@@ -77,7 +77,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../pages/user/tabel_user.php">
+                    <a class="nav-link " href="../user/tabel_user.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-danger text-sm opacity-10"></i>
                         </div>
@@ -88,7 +88,7 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Halaman Akun</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../pages/profile.html">
+                    <a class="nav-link " href="../profile.html">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-circle-08 text-dark text-sm opacity-10"></i>
                         </div>
@@ -96,7 +96,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../pages/login/sign-in.php">
+                    <a class="nav-link " href="../login/sign-in.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
                         </div>
@@ -104,7 +104,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../pages/login/sign-up.php">
+                    <a class="nav-link " href="../login/sign-up.php">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-info text-sm opacity-10"></i>
                         </div>

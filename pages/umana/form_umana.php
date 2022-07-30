@@ -1,18 +1,18 @@
-<?php include "./../inc/koneksi.php"; ?>
-<?php include "./../inc/sidebar.php"; ?>
+<?php include "../inc/koneksi.php"; ?>
+<?php include "../inc/sidebar.php"; ?>
 <!-- End Navbar -->
 <div class="card shadow-lg mx-4 card-profile-bottom">
     <div class="card-body p-3">
-        <div class="row gx-4">
+        <div class="row gx-3">
             <div class="col-auto">
             </div>
             <div class="col-auto my-auto">
                 <div class="h-100">
                     <h5 class="mb-1">
-                        Edit Identitas Umana'
+                        Form Identitas Umana'
                     </h5>
                     <p class="mb-0 font-weight-bold text-sm">
-                        PP. Salafiyah Syafi'iyah Sukorejo
+                        Sistem Informasi Absensi Umana'
                     </p>
                 </div>
             </div>
@@ -50,34 +50,31 @@
             <div class="card">
                 <div class="card-header pb-0">
                 </div>
-                <?php include "./../inc/koneksi.php";
-                $tampil = $koneksi->query("SELECT * FROM tb_umana WHERE niu='$_GET[id]'");
-                $r = $tampil->fetch_object();
-                ?>
+                <?php include "./inc/koneksi.php"; ?>
                 <form class="card-body" method="post" action="">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Nomor Induk Umana'(NIU)<span class="help"> e.x. "2020503009"</span></label>
-                                <input type="text" id="" name="niu" class="form-control" value="<?php echo $r->niu; ?>" placeholder="Nomor Induk Umana'" readonly>
+                                <input type="text" id="" name="niu" class="form-control" placeholder="Nomor Induk Umana'">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Nama Umana'<span class="help"> e.x. "Ahmad Zeinuri"</label>
-                                <input type="nama" id="" name="nama" class="form-control" value="<?php echo $r->nama; ?>" placeholder="Nama">
+                                <input type="nama" id="" name="nama" class="form-control" placeholder="Nama">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Tempat Lahir <span class="help">e.x. "Bondowoso"</span></label>
-                                <input type="text" id="" name="tempat" class="form-control" value="<?php echo $r->tmp_lahir; ?>" placeholder="Kabupaten/Kota">
+                                <input type="text" id="" name="tempat" class="form-control" placeholder="Kabupaten/Kota">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Tanggal Lahir</label>
-                                <input type="date" name="tgl_lhr" class="form-control" value="<?php echo $r->tgl_lahir; ?>" placeholder="placeholder">
+                                <input type="date" name="tgl_lhr" class="form-control" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -131,7 +128,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Alamat</label>
-                                <textarea class="form-control" name="alamat" rows="5"><?php echo $r->alamat; ?></textarea>
+                                <textarea class="form-control" type="text" name="alamat" rows="5"></textarea>
                             </div>
                         </div>
                     </div>
@@ -141,15 +138,8 @@
                 </form>
                 <?php
                 if (@$_POST['simpan']) {
-                    $query = $koneksi->query("UPDATE tb_umana SET nama='$_POST[nama]',
-                                                        tmp_lahir= '$_POST[tempat]',
-                                                        tgl_lahir='$_POST[tgl_lhr]',
-                                                        alamat='$_POST[alamat]',
-                                                        kd_instansi='$_POST[instansi]',
-                                                        kd_status='$_POST[status]',
-                                                        kd_jabatan='$_POST[jabatan]'
-                                                        WHERE niu='$_POST[niu]'");
-
+                    $query = $koneksi->query("INSERT INTO tb_umana (niu, nama, tmp_lahir, tgl_lahir, alamat, kd_instansi, kd_status, kd_jabatan)
+                                VALUE('$_POST[niu]', '$_POST[nama]', '$_POST[tempat]', '$_POST[tgl_lhr]', '$_POST[alamat]', '$_POST[instansi]', '$_POST[status]', '$_POST[jabatan]')");
                     if ($query) {
                 ?>
                         <script>
@@ -165,7 +155,7 @@
         </div>
         <div class="col-md-4">
             <div class="card card-profile">
-                <img src="../assets/img/kantor pusat.jpg" alt="Image placeholder" class="card-img-top">
+                <img src="../../assets/img/kantor pusat.jpg" alt="Image placeholder" class="card-img-top">
                 <div class="card-body pt-0">
                     <div class="text-center mt-4">
                         <h5>
@@ -185,5 +175,5 @@
             </div>
         </div>
     </div>
-    <?php include "./../inc/footer.php"; ?>
+    <?php include "../inc/footer.php"; ?>
 </div>

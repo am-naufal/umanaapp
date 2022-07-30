@@ -1,6 +1,6 @@
-<?php include "./../inc/koneksi.php"; ?>
-<?php include "./../inc/sidebar.php"; ?>
-<?php include "./../inc/header.php"; ?>
+<?php include "../inc/koneksi.php"; ?>
+<?php include "../inc/sidebar.php"; ?>
+<?php include "../inc/header.php"; ?>
 
 <!-- isi table -->
 
@@ -68,6 +68,5 @@
             </div>
         </div>
     </div>
-    <?php include "./../inc/footer.php"; ?>
+    <?php include "../inc/footer.php"; ?>
 </div>
-
