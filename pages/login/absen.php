@@ -44,7 +44,7 @@
                                     <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="../home/home.php">
                                         <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
                                         <?php
-                                        include '../../inc/_day.php';
+                                        include '../inc/_day.php';
 
                                         echo __day() . date(',d F Y'); ?>
                                     </a>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="card-body">
                                     <?php
-                                    include_once '../../inc/_database.php';
+                                    include_once '../inc/_database.php';
                                     $db = __database();
                                     $where = [
                                         'niu' => $_SESSION['id_user']
