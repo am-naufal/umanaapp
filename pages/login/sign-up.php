@@ -85,49 +85,125 @@
     </div>
     <div class="container">
       <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
-        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
-          <div class="card z-index-0">
-            <div class="card-header text-center pt-4">
-              <h5>Register Umana</h5>
+        <div class="col-xl-7 col-lg-6 col-md-8 mx-auto">
+          <div class="card z-index-0x">
+            <div class="card-header pb-0">
             </div>
-            <div class="card-body">
-              <form role="form">
-                <div class="mb-3">
-                  <input type="text" id="" name="niu" class="form-control" placeholder="Nomor Induk Umana'">
+            <?php include "../inc/_database.php"; ?>
+            <form class="card-body" method="post" action="">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Nomor Induk Umana'(NIU)<span class="help"> e.x. "2020503009"</span></label>
+                    <input type="text" id="" name="niu" class="form-control" placeholder="Nomor Induk Umana'">
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <input type="nama" id="" name="nama" class="form-control" placeholder="Nama">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Nama Umana'<span class="help"> e.x. "Ahmad Zeinuri"</label>
+                    <input type="nama" id="" name="nama" class="form-control" placeholder="Nama">
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <input type="text" id="" name="tempat" class="form-control" placeholder="Tempat Lahir">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Tempat Lahir <span class="help">e.x. "Bondowoso"</span></label>
+                    <input type="text" id="" name="tempat" class="form-control" placeholder="Kabupaten/Kota">
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <input type="date" name="tgl_lhr" class="form-control" placeholder="Tanggal Lahir">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Tanggal Lahir</label>
+                    <input type="date" name="tgl_lhr" class="form-control" placeholder="">
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="example-text-input" class="form-control-label">Status</label>
-                  <select class="form-control" name="status">
-                    <option class="form-control">Pilih Status</option>
-                    <?php
-                    $status = $koneksi->query("SELECT * FROM tb_status");
-                    while ($b = $status->fetch_array()) {
-                      echo "<option value= '$b[kd_status]'>$b[status]</option>";
-                    }
-                    ?>
-                  </select>
+              </div>
+              <hr class="horizontal dark">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Instansi</label>
+                    <select class="form-control" name="instansi">
+                      <option class="form-control">Pilih Instansi</option>
+                      <?php
+                      $db = __database();
+                      $i = __ambil($db, "tb_instansi");
+                      while ($a = $i->fetch_array()) {
+                        echo "<option value= '$a[kd_instansi]'>$a[instansi]</option>";
+                      }
+                      ?>
+                    </select>
+                  </div>
                 </div>
-                <div class="form-check form-check-info text-start">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                  <label class="form-check-label" for="flexCheckDefault">
-                    I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
-                  </label>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Status</label>
+                    <select class="form-control" name="status">
+                      <option class="form-control">Pilih Status</option>
+                      <?php
+                      $status = __ambil($db, "tb_status");
+                      while ($b = $status->fetch_array()) {
+                        echo "<option value= '$b[kd_status]'>$b[status]</option>";
+                      }
+                      ?>
+                    </select>
+                  </div>
                 </div>
-                <div class="text-center">
-                  <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Jabatan</label>
+                    <select class="form-control" name="jabatan">
+                      <option class="form-control">Pilih Jabatan</option>
+                      <?php
+                      $jabatan = __ambil($db, "tb_jabatan");
+                      while ($c = $jabatan->fetch_array()) {
+                        echo "<option value= '$c[kd_jabatan]'>$c[nama_jabatan]</option>";
+                      }
+                      ?>
+                    </select>
+                  </div>
                 </div>
-                <p class="text-sm mt-3 mb-0">Already have an account? <a href="javascript:;" class="text-dark font-weight-bolder">Sign in</a></p>
-              </form>
-            </div>
+              </div>
+              <hr class="horizontal dark">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Alamat</label>
+                    <textarea class="form-control" type="text" name="alamat" rows="5"></textarea>
+                  </div>
+                </div>
+              </div>
+              <hr class="horizontal dark">
+              <button type="submit" name="simpan" value="simpan" class="btn btn-primary btn-sm ms-auto align-items-center">Simpan</button>
+              <a type="submit" class="btn btn-warning btn-sm ms-auto align-items-center" href="sign-in.php">Kembali</a>
+            </form>
+            <?php
+            if (@$_POST['simpan']) {
+              $data = [
+                'niu' => $_POST['niu'],
+                'nama' => $_POST['nama'],
+                'tmp_lahir' => $_POST['tempat'],
+                'tgl_lahir' => $_POST['tgl_lhr'],
+                'alamat' => $_POST['alamat'],
+                'kd_instansi' => $_POST['instansi'],
+                'kd_status' => $_POST['status'],
+                'kd_jabatan' => $_POST['jabatan'],
+
+
+              ];
+              $query = __simpan($db, "tb_umana", $data);
+              if ($query) {
+
+            ?>
+                <script>
+                  alert("<strong> Berhasil </strong> , Anda sudah terdaftar")
+                  window.location.href = 'sign-in.php';
+                </script>
+            <?php
+              } else {
+                echo "Data gagal disimpan";
+              }
+            }
+            ?>
           </div>
         </div>
       </div>
