@@ -10,7 +10,7 @@ $where = ['username' => $username, 'password' => $password];
 $cekUsers = __ambil($db, "tb_user", "*", $where);
 if ($cekUsers->num_rows > 0) {
     $r = $cekUsers->fetch_object();
-    $_SESSION['id_user'] = $r->iduser;
+    $_SESSION['id_user'] = $r->id_user;
     $_SESSION['username'] = $r->username;
     $_SESSION['level'] = $r->level;
     $_SESSION['status_login'] = true;
