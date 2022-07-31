@@ -34,9 +34,9 @@ if ($cekUsers->num_rows > 0) {
         </script>";
     } else {
         echo " 
-            <script>
-                alert('Maaf, Anda tidak memiliki akses ke sistem');
-                window.location.href='sign-in.php';
-            </script>";
+        <script>
+        alert('Maaf, Anda tidak memiliki akses ke sistem');
+        window.location.href='sign-in.php';
+    </script>";
     }
 }
