@@ -55,7 +55,7 @@ $db = __database();
                 include_once '../inc/_database.php';
                 $db = __database();
                 $where = [
-                    'id_user' => $_SESSION['id_user']
+                    'id_user' => $_GET['id']
                 ];
                 $query = __ambil($db, "tb_user", "*", $where);
                 $r = $query->fetch_object();
@@ -100,20 +100,38 @@ $db = __database();
                         $data = ['username' => $_POST['username'], 'password' => sha1($_POST['password'])];
                         $where = ['id_user' => $_POST['id_user']];
                         $update = __update($db, "tb_user", $data, $where);
+                        if ($update) {
+                            echo " 
+        <script>
+        alert('berhasil simpan ubah pss');
+        
+    </script>";
+                ?>
+                            <script>
+                                window.location.href = 'tabel_user.php';
+                            </script>
+                        <?php
+                        } else {
+                            echo "Data gagal disimpan";
+                        }
                     } else {
                         $data = ['username' => $_POST['username']];
                         $where = ['id_user' => $_POST['id_user']];
                         $update = __update($db, "tb_user", $data, $where);
-                    }
-                    if ($update) {
-
-                ?>
-                        <script>
-                            window.location.href = 'tabel_user.php';
-                        </script>
+                        if ($update) {
+                            echo " 
+                            <script>
+                            alert('berhasil simpan !pss');
+                          
+                        </script>";
+                        ?>
+                            <script>
+                                window.location.href = 'tabel_user.php';
+                            </script>
                 <?php
-                    } else {
-                        echo "Data gagal disimpan";
+                        } else {
+                            echo "Data gagal disimpan";
+                        }
                     }
                 }
                 ?>
