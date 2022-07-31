@@ -64,7 +64,7 @@
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">ID ADMIN</p>
                                 <h5 class="font-weight-bolder">
                                     <?php
-                                    echo $_SESSION['id_user']; ?>
+                                    echo $_SESSION['level']; ?>
                                 </h5>
                                 <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+3%</span>
