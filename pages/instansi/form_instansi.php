@@ -2,7 +2,7 @@
 <?php include "./../inc/sidebar.php"; ?>
 
 <!-- End Navbar -->
-<div class="card sadow-lg mx-4 card-profile-bottom">
+<div class="card shadow-lg mx-4 card-profile-bottom">
     <div class="card-body p-3">
         <div class="row gx-4">
             <div class="col-auto">
