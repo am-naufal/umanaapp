@@ -22,6 +22,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
+    <?php session_start(); ?>
     <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://images.pexels.com/photos/12952000/pexels-photo-12952000.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-position-y: 30%;">
         <span class="mask bg-primary opacity-6"></span>
     </div>
