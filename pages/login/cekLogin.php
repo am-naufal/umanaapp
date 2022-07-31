@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../../inc/_database.php";
+include "../inc/_database.php";
 $db = __database();
 $username = $_POST['user'];
 $password = sha1($_POST['password']);
@@ -16,7 +16,7 @@ if ($cekUsers->num_rows > 0) {
     $_SESSION['status_login'] = true;
 
     echo " 
-    <script> window.location.href='../../home/home.php'</script>
+    <script> window.location.href='../home/home.php'</script>
     ";
 } else {
     $whereumana = [
