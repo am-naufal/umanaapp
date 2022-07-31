@@ -58,9 +58,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link me-2" href="#">
+                                    <a class="nav-link me-2" href="profileUmana.php">
                                         <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                                        Sign Up
+                                        Profile
                                     </a>
                                 </li>
                                 <li class="nav-item">
