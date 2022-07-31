@@ -1,5 +1,5 @@
-<?php include "../inc/sidebar.php"; ?>
-<?php include "../inc/header.php"; ?>
+<?php include_once "../inc/sidebar.php"; ?>
+<?php include_once "../inc/header.php"; ?>
 <div class="container-fluid py-4" id="">
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
