@@ -44,7 +44,7 @@
                   <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="#">
                     <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
                     <?php
-                    include_once '../../inc/_day.php';
+                    include_once '../inc/_day.php';
 
                     echo __day() . date(',d F Y'); ?>
                   </a>
@@ -66,11 +66,6 @@
                     <i class="fas fa-key opacity-6 text-dark me-1"></i>
                     Sign In
                   </a>
-                </li>
-              </ul>
-              <ul class="navbar-nav d-lg-block d-none">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/product/argon-dashboard" class="btn btn-sm mb-0 me-1 btn-primary">Free Download</a>
                 </li>
               </ul>
             </div>
