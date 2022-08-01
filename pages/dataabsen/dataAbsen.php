@@ -36,10 +36,12 @@
                                 <?php
                                 include "../inc/_database.php";
                                 $db = __database();
-                                $show = $db->query("SELECT * FROM tb_absen AS a
-                                LEFT JOIN tb_umana AS u ON a.niu=u.niu
-                                LEFT JOIN tb_instansi AS i ON a.kd_instansi=i.kd_instansi
-                                LEFT JOIN tb_jabatan AS j ON a.kd_jabatan=j.kd_jabatan");
+                                $join = [
+                                    "LEFT JOIN tb_umana AS u ON a.niu=u.niu",
+                                    "LEFT JOIN tb_instansi AS i ON a.kd_instansi=i.kd_instansi",
+                                    "LEFT JOIN tb_jabatan AS j ON a.kd_jabatan=j.kd_jabatan"
+                                ];
+                                $show = __ambil($db, "tb_absen AS a", null, null, $join);
                                 $no = 1;
                                 while ($r = $show->fetch_array()) {
                                 ?>
