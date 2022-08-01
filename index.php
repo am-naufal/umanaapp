@@ -9,7 +9,7 @@ if ($_SESSION['status_login'] == 'true') {
         header('location: http://' . $host . 'pages/home/home.php');
     } else if ($_SESSION['level'] == 'umana') {
         // buka acsess umana 
-        header('location: http://' . $host . 'pages/login/absen.php');
+        header('location: http://' . $host . 'pages/dataabsen/absen.php');
     } else {
         header('location: http://' . $host . 'pages/login/sign-in.php');
     }
