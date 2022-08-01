@@ -30,7 +30,7 @@ if ($cekUsers->num_rows > 0) {
         $_SESSION['nama'] = $p->nama;
         $_SESSION['level'] = 'umana';
         $_SESSION['status_login'] = true;
-        echo " <script> window.location.href='absen.php'
+        echo " <script> window.location.href='../dataabsen/absen.php'
         </script>";
     } else {
         echo " 
