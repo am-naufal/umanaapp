@@ -19,14 +19,16 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tanggal</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NIU</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tempat, Tgl. Lahir</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Instansi</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Jabatan</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alamat</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Aksi</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Jam Masuk</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Jam Pulang</th>
+
+
                                     <th></th>
                                 </tr>
                             </thead>
@@ -34,25 +36,23 @@
                                 <?php
                                 include "../inc/_database.php";
                                 $db = __database();
-                                $show = __ambil($db, "tb_absensi");
+                                $show = $db->query("SELECT * FROM tb_absen AS a
+                                LEFT JOIN tb_umana AS u ON a.niu=u.niu
+                                LEFT JOIN tb_instansi AS i ON a.kd_instansi=i.kd_instansi
+                                LEFT JOIN tb_jabatan AS j ON a.kd_jabatan=j.kd_jabatan");
                                 $no = 1;
                                 while ($r = $show->fetch_array()) {
                                 ?>
                                     <tr>
                                         <td><span class="text-xs font-weight-bold" style="margin-left:  20px;"><?php echo $no; ?></span></td>
-                                        <td class="text-sm font-weight-bold mb-0"><?php echo $r['kd_absensi']; ?></td>
+                                        <td class="text-sm font-weight-bold mb-0"><?php echo $r['tanggal']; ?></td>
                                         <td class="text-sm font-weight-bold mb-0"><?php echo $r['niu']; ?></td>
-                                        <td class="text-sm font-weight-bold mb-0"><?php echo $r['tgl_absen']; ?></td>
-                                        <td class="text-xs font-weight-bold mb-0 "><?php echo $r['jam_masuk']; ?></td>
-                                        <td class="text-xs font-weight-bold mb-0 "><?php echo $r['jam_pulang']; ?></td>
-                                        <td class="align-middle text-sm">
-                                            <span class="badge badge-sm bg-gradient-secondary"><?php echo $r['status']; ?></span>
-                                        </td>
-                                        <td class="text-sm font-weight-bold mb-0 "><?php echo $r['alamat']; ?></td>
-                                        <td class="text-xs font-weight-bold opacity-7 ps-1" style="text-align:center;">
-                                            <a class="btn btn-link text-dark px-3 mb-0" href="edit_umana.php?id=<?php echo $r['niu']; ?>"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Ubah</a>
-                                            <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="hapus.php?id=<?php echo $r['niu']; ?>"><i class="far fa-trash-alt me-2"></i>Hapus</a>
-                                        </td>
+                                        <td class="text-sm font-weight-bold mb-0"><?php echo $r['nama']; ?></td>
+                                        <td class="text-sm font-weight-bold mb-0"><?php echo $r['instansi']; ?></td>
+                                        <td class="text-sm font-weight-bold mb-0"><?php echo $r['nama_jabatan']; ?></td>
+                                        <td class="text-sm font-weight-bold mb-0"></td>
+                                        <td class="text-sm font-weight-bold mb-0"><?php echo $r['jam_masuk']; ?></td>
+                                        <td class="text-sm font-weight-bold mb-0"><?php echo $r['jam_pulang']; ?></td>
                                     </tr>
                                 <?php
                                     $no++;
