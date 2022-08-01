@@ -113,7 +113,7 @@
                                     $query = __ambil($db, "tb_umana", "*", $where);
                                     $r = $query->fetch_object();
                                     ?>
-                                    <form role="form" method="POST" action="cekAbsen.php">
+                                    <form role="form" method="POST" action="tesAbsen.php">
                                         <div class="mb-1">
                                             <label class="col-sm-2 col-form-label">Nama</label>
                                             <input type="text" class="form-control form-control-lg" value="<?php echo $r->nama; ?>" readonly>
@@ -136,16 +136,6 @@
                                             <label class="col-form-label">Jabatan</label>
                                             <input type="text" name="jabatan" class="form-control form-control-lg" value="<?php echo $q->kd_jabatan; ?>" readonly>
                                         </div>
-                                        <?php
-                                        $niu = $_SESSION['id_user'];
-                                        $query = $db->query("SELECT * FROM tb_absen where niu='$niu' and tanggal='date(d/n/Y)'");
-                                        $m = $query->fetch_object();
-
-                                        ?>
-
-                                        <label class="col-form-label"><?php echo var_dump($query); ?></label>
-                                        <input type="text" name="masuk" class="form-control form-control-lg" value=" <?php echo $m->jam_masuk; ?> " readonly>
-                                        <input type="text" name="pulang" class="form-control form-control-lg" value=" <?php echo $m->jam_pulang; ?>" readonly>
                                         <div class="text-center">
                                             <button type="submit" name="simpan" value="Simpan" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Absen</button>
                                         </div>
