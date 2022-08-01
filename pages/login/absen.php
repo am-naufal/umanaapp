@@ -45,8 +45,9 @@
                                         <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
                                         <?php
                                         include '../inc/_day.php';
-
-                                        echo __day() . date(',d F Y'); ?>
+                                        $hari = __day();
+                                        $tanggal = date('d F Y');
+                                        echo $hari . "," . $tanggal; ?>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -86,7 +87,7 @@
                             <div class="card card-plain">
                                 <div class="card-header pb-0 text-start">
                                     <h4 class="font-weight-bolder">Absen</h4>
-                                    <p class="mb-0">Masukkan Nomor Induk Umana'</p>
+                                    <p class="mb-0">Barokah Sudah menanti Anda</p>
                                 </div>
                                 <div class="card-body">
                                     <?php
@@ -105,6 +106,15 @@
                                         </div>
                                         <div class="mb-1">
                                             <?php
+                                            $whereinst = ['kd_instansi' => $r->kd_instansi];
+                                            $query = __ambil($db, "tb_instansi", "*", $whereinst);
+                                            $q = $query->fetch_object();
+                                            ?>
+                                            <label class="col-form-label">Instansi</label>
+                                            <input type="text" class="form-control form-control-lg" value="<?php echo $q->instansi; ?>" readonly>
+                                        </div>
+                                        <div class="mb-1">
+                                            <?php
                                             $wherejbtn = ['kd_jabatan' => $r->kd_jabatan];
                                             $query = __ambil($db, "tb_jabatan", "*", $wherejbtn);
                                             $q = $query->fetch_object();
@@ -112,14 +122,32 @@
                                             <label class="col-form-label">Jabatan</label>
                                             <input type="text" class="form-control form-control-lg" value="<?php echo $q->nama_jabatan; ?>" readonly>
                                         </div>
-                                        <div class="mb-1">
-                                            <label class=" col-form-label">Tempat, Tanggal Lahir</label>
-                                            <input type="text" class="form-control form-control-lg" value="<?php echo $r->tmp_lahir . ", " . $r->tgl_lahir; ?>" readonly>
-                                        </div>
+                                        <input type="hidden" class="form-control form-control-lg" value="<?php echo $tanggal; ?>" readonly>
+                                        <input type="hidden" class="form-control form-control-lg" value="<?php echo $r->niu; ?>" readonly>
+                                        <input type="hidden" class="form-control form-control-lg" value="<?php echo jam masuk ; ?>" readonly>
+                                        <input type="hidden" class="form-control form-control-lg" value="<?php echo jam pulang; ?>" readonly>
+                                        <input type="hidden" class="form-control form-control-lg" value="<?php echo status; ?>" readonly>
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Absen</button>
+                                            <button type="submit" name="simpan" value="Simpan" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Absen</button>
                                         </div>
                                     </form>
+                                    <?php
+                                    // if (@$_POST('simpan')) {
+
+                                    //     $query = $koneksi->query("INSERT INTO tb_absen (id_absen, tanggal, niu,kd_instansi, kd_jabatan, jam_masuk,jam_pulang) VALUES 
+                                    //                 ('$_POST[niu]', '$_POST[nama]', '$_POST[tempat]', '$_POST[tgl_lhr]', '$_POST[alamat]', '$_POST[instansi]', '$_POST[status]', '$_POST[jabatan]')");
+                                    //     if ($query) {
+                                    ?>
+                                    <!-- <script>
+                                                window.location.href = 'tabel_umana.php';
+                                            </script> -->
+                                    <?php
+                                    //     } else {
+                                    //         echo "Data gagal disimpan";
+                                    //     }
+                                    // }
+
+                                    ?>
                                 </div>
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
