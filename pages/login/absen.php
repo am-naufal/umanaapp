@@ -93,6 +93,16 @@
                                     <h4 class="font-weight-bolder">Absen</h4>
                                     <p class="mb-0">Barokah Sudah menanti Anda</p>
                                 </div>
+                                <div class="alert alert-success hidden" id="sukses" role="alert">
+                                    <strong>Berhasil!</strong> Anda sudah terAbsen
+                                </div>
+                                <!-- <div class="alert alert-warning alert-dismissible fade hidden" role="alert">
+                                    <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+                                    <span class="alert-text"><strong>Warning!</strong> This is a warning alert—check it out!</span>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div> -->
                                 <div class="card-body">
                                     <?php
                                     include_once '../inc/_database.php';
@@ -103,7 +113,7 @@
                                     $query = __ambil($db, "tb_umana", "*", $where);
                                     $r = $query->fetch_object();
                                     ?>
-                                    <form role="form">
+                                    <form role="form" method="POST">
                                         <div class="mb-1">
                                             <label class="col-sm-2 col-form-label">Nama</label>
                                             <input type="text" class="form-control form-control-lg" value="<?php echo $r->nama; ?>" readonly>
@@ -115,7 +125,7 @@
                                             $q = $query->fetch_object();
                                             ?>
                                             <label class="col-form-label">Instansi</label>
-                                            <input type="text" class="form-control form-control-lg" value="<?php echo $q->instansi; ?>" readonly>
+                                            <input type="text" name="instansi" class="form-control form-control-lg" value="<?php echo $q->instansi; ?>" readonly>
                                         </div>
                                         <div class="mb-1">
                                             <?php
@@ -124,36 +134,27 @@
                                             $q = $query->fetch_object();
                                             ?>
                                             <label class="col-form-label">Jabatan</label>
-                                            <input type="text" class="form-control form-control-lg" value="<?php echo $q->nama_jabatan; ?>" readonly>
+                                            <input type="text" name="" class="form-control form-control-lg" value="<?php echo $q->nama_jabatan; ?>" readonly>
                                         </div>
-                                        <input type="hidden" name="tanggal" class="form-control form-control-lg" value="<?php $tanggal; ?>" readonly>
-                                        <input type="hidden" name="niu" class="form-control form-control-lg" value="<?php $r->niu; ?>" readonly>
-                                        <input type="hidden" name="masuk" class="form-control form-control-lg" value="<?php date("H:i"); ?>" readonly>
-                                        <input type="hidden" name="pulang" class="form-control form-control-lg" value="<?php date("H:i") ?>" readonly>
-                                        <input type="hidden" name="status" class="form-control form-control-lg" value="<?php $r->status ?>" readonly>
+                                        <?php
+                                        $wheremsk = [
+                                            'niu' => $_SESSION['id_user'],
+                                            'tanggal' => $tanggal
+                                        ];
+                                        $query = __ambil($db, "tb_absen", "*", $wheremsk);
+                                        $m = $query->fetch_object();  ?>
+                                        <input type="hidden" name="masuk" class="form-control form-control-lg" value="" readonly>
+                                        <input type="hidden" name="pulang" class="form-control form-control-lg" value="" readonly>
+                                        <input type="hidden" name="status" class="form-control form-control-lg" value="<?php if (empty($m->jam_masuk)) {
+                                                                                                                            echo "pulang";
+                                                                                                                        } else {
+                                                                                                                            echo "masuk";
+                                                                                                                        } ?>" readonly>
                                         <div class="text-center">
                                             <button type="submit" name="simpan" value="Simpan" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Absen</button>
                                         </div>
                                     </form>
                                     <?php
-                                    if (@$_POST('simpan') == "Simpan") {
-                                        if ($_POST['status'] == '' || 'pulang') {
-                                            $query = $koneksi->query("INSERT INTO tb_absen (id_absen, tanggal, niu,kd_instansi, kd_jabatan, jam_masuk) VALUES 
-                                                    ('$_POST[niu]', '$_POST[nama]', '$_POST[tempat]', '$_POST[tgl_lhr]', '$_POST[alamat]', '$_POST[instansi]', '$_POST[status]', '$_POST[jabatan]')");
-                                        } else {
-                                            $query = $koneksi->query(" UPDATE tb_absen set  jam_pulang = '$_POST[pulang]' whare niu = '$_POST[niu]' tanggal = '$tanggal'");
-                                        }
-
-                                        if ($query) {
-                                    ?>
-                                            <script>
-                                                window.location.href = 'tabel_umana.php';
-                                            </script>
-                                    <?php
-                                        } else {
-                                            echo "Data gagal disimpan";
-                                        }
-                                    }
 
                                     ?>
                                 </div>
@@ -184,6 +185,7 @@
     <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="../../assets/js/jam.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
@@ -192,6 +194,8 @@
                 damping: '0.5'
             }
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+
+
         }
     </script>
     <!-- Github buttons -->
