@@ -41,8 +41,18 @@
                         <div class="collapse navbar-collapse" id="navigation">
                             <ul class="navbar-nav mx-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="../home/home.php">
-                                        <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
+                                    <a class="nav-link d-flex align-items-center me-2 active font-weight-bold " aria-current="page" href="../home/home.php">
+                                        <i class="fa fa-chart-pie opacity-6 text-dark me-2"></i> <b>
+                                            <?php
+                                            date_default_timezone_set('Asia/Jakarta');
+                                            echo $jam = "<span id='jam' style='font-size:24'></span> WIB."; ?>
+                                        </b>
+
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link me-2" href="#">
+                                        <i class="fa fa-user opacity-6 text-dark me-1"></i>
                                         <?php
                                         include '../inc/_day.php';
                                         $hari = __day();
@@ -51,17 +61,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link me-2" href="#">
-                                        <i class="fa fa-user opacity-6 text-dark me-1"></i>
+                                    <a class="nav-link me-2" href="profileUmana.php">
+                                        <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
                                         <?php
                                         session_start();
                                         echo $_SESSION['id_user']; ?>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link me-2" href="profileUmana.php">
-                                        <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                                        Profile
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -122,30 +126,34 @@
                                             <label class="col-form-label">Jabatan</label>
                                             <input type="text" class="form-control form-control-lg" value="<?php echo $q->nama_jabatan; ?>" readonly>
                                         </div>
-                                        <input type="hidden" class="form-control form-control-lg" value="<?php echo $tanggal; ?>" readonly>
-                                        <input type="hidden" class="form-control form-control-lg" value="<?php echo $r->niu; ?>" readonly>
-                                        <input type="hidden" class="form-control form-control-lg" value="<?php echo jam masuk ; ?>" readonly>
-                                        <input type="hidden" class="form-control form-control-lg" value="<?php echo jam pulang; ?>" readonly>
-                                        <input type="hidden" class="form-control form-control-lg" value="<?php echo status; ?>" readonly>
+                                        <input type="hidden" name="tanggal" class="form-control form-control-lg" value="<?php $tanggal; ?>" readonly>
+                                        <input type="hidden" name="niu" class="form-control form-control-lg" value="<?php $r->niu; ?>" readonly>
+                                        <input type="hidden" name="masuk" class="form-control form-control-lg" value="<?php date("H:i"); ?>" readonly>
+                                        <input type="hidden" name="pulang" class="form-control form-control-lg" value="<?php date("H:i") ?>" readonly>
+                                        <input type="hidden" name="status" class="form-control form-control-lg" value="<?php $r->status ?>" readonly>
                                         <div class="text-center">
                                             <button type="submit" name="simpan" value="Simpan" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Absen</button>
                                         </div>
                                     </form>
                                     <?php
-                                    // if (@$_POST('simpan')) {
+                                    if (@$_POST('simpan') == "Simpan") {
+                                        if ($_POST['status'] == '' || 'pulang') {
+                                            $query = $koneksi->query("INSERT INTO tb_absen (id_absen, tanggal, niu,kd_instansi, kd_jabatan, jam_masuk) VALUES 
+                                                    ('$_POST[niu]', '$_POST[nama]', '$_POST[tempat]', '$_POST[tgl_lhr]', '$_POST[alamat]', '$_POST[instansi]', '$_POST[status]', '$_POST[jabatan]')");
+                                        } else {
+                                            $query = $koneksi->query(" UPDATE tb_absen set  jam_pulang = '$_POST[pulang]' whare niu = '$_POST[niu]' tanggal = '$tanggal'");
+                                        }
 
-                                    //     $query = $koneksi->query("INSERT INTO tb_absen (id_absen, tanggal, niu,kd_instansi, kd_jabatan, jam_masuk,jam_pulang) VALUES 
-                                    //                 ('$_POST[niu]', '$_POST[nama]', '$_POST[tempat]', '$_POST[tgl_lhr]', '$_POST[alamat]', '$_POST[instansi]', '$_POST[status]', '$_POST[jabatan]')");
-                                    //     if ($query) {
+                                        if ($query) {
                                     ?>
-                                    <!-- <script>
+                                            <script>
                                                 window.location.href = 'tabel_umana.php';
-                                            </script> -->
+                                            </script>
                                     <?php
-                                    //     } else {
-                                    //         echo "Data gagal disimpan";
-                                    //     }
-                                    // }
+                                        } else {
+                                            echo "Data gagal disimpan";
+                                        }
+                                    }
 
                                     ?>
                                 </div>
@@ -175,6 +183,8 @@
     <script src="../../assets/js/core/bootstrap.min.js"></script>
     <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../../assets/js/jam.js"></script>
+
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
