@@ -27,9 +27,6 @@
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Jam Masuk</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Jam Pulang</th>
-
-
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,7 +49,14 @@
                                         <td class="text-sm font-weight-bold mb-0"><?php echo $r['nama']; ?></td>
                                         <td class="text-sm font-weight-bold mb-0"><?php echo $r['instansi']; ?></td>
                                         <td class="text-sm font-weight-bold mb-0"><?php echo $r['nama_jabatan']; ?></td>
-                                        <td class="text-sm font-weight-bold mb-0"></td>
+                                        <td class="align-middle text-sm">
+                                            <?php if (empty($r['jam_pulang'])) {
+
+                                                echo '<span class="badge badge-sm bg-gradient-success">Hadir</span>';
+                                            } else {
+                                                echo '<span class="badge badge-sm bg-gradient-warning">Pulang</span>';
+                                            } ?>
+                                        </td>
                                         <td class="text-sm font-weight-bold mb-0"><?php echo $r['jam_masuk']; ?></td>
                                         <td class="text-sm font-weight-bold mb-0"><?php echo $r['jam_pulang']; ?></td>
                                     </tr>
@@ -62,6 +66,7 @@
                                 ?>
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>
