@@ -27,7 +27,10 @@
                 <div class="card-header pb-0">
                 </div>
                 <?php include "../inc/koneksi.php";
-                $tampil = $koneksi->query("SELECT * FROM tb_umana WHERE niu='$_GET[id]'");
+                $niu = $_GET['id'];
+                $tampil = $koneksi->query("SELECT * FROM tb_umana AS u LEFT JOIN tb_instansi AS i ON u.kd_instansi=i.kd_instansi
+                 LEFT JOIN tb_status AS s ON u.kd_status=s.kd_status 
+                LEFT JOIN tb_jabatan AS j ON u.kd_jabatan=j.kd_jabatan WHERE u.niu='$niu'");
                 $r = $tampil->fetch_object();
                 ?>
                 <form class="card-body" method="post" action="">
@@ -63,9 +66,10 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Instansi</label>
                                 <select class="form-control" name="instansi">
-                                    <option class="form-control">Pilih Instansi</option>
+                                    <option class="form-control" value="<?php echo $r->kd_instansi; ?>"><?php echo $r->instansi; ?> </option>";
                                     <?php
                                     $instansi = $koneksi->query("SELECT * FROM tb_instansi");
+
                                     while ($a = $instansi->fetch_array()) {
                                         echo "<option value= '$a[kd_instansi]'>$a[instansi]</option>";
                                     }
@@ -77,7 +81,7 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Status</label>
                                 <select class="form-control" name="status">
-                                    <option class="form-control">Pilih Status</option>
+                                    <option class="form-control" value="<?php echo $r->kd_status; ?>"><?php echo $r->status; ?> </option>";
                                     <?php
                                     $status = $koneksi->query("SELECT * FROM tb_status");
                                     while ($b = $status->fetch_array()) {
@@ -91,7 +95,7 @@
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Jabatan</label>
                                 <select class="form-control" name="jabatan">
-                                    <option class="form-control">Pilih Jabatan</option>
+                                    <option class="form-control" value="<?php echo $r->kd_jabatan; ?>"><?php echo $r->nama_jabatan; ?> </option>";
                                     <?php
                                     $jabatan = $koneksi->query("SELECT * FROM tb_jabatan");
                                     while ($c = $jabatan->fetch_array()) {
