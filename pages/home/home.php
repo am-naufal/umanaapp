@@ -74,7 +74,7 @@
                                 <h5 class="font-weight-bolder h2">
                                     <?php
                                     $where = [
-                                        'kd_status' => '0'
+                                        'kd_status' => '2'
                                     ];
                                     $ambil = __ambil($db, "tb_umana", '*', $where);
                                     echo $jumlahAktif = mysqli_num_rows($ambil);
