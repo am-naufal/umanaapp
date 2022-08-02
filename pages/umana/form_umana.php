@@ -34,7 +34,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Nomor Induk Umana'(NIU)<span class="help"> e.x. "2020503009"</span></label>
-                                <input type="text" id="" name="niu" class="form-control" placeholder="Nomor Induk Umana'">
+                                <input type="text" id="" name="niu" class="form-control" placeholder="Nomor Induk Umana'" required>
                             </div>
                         </div>
                         <div class="col-md-6">
