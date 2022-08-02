@@ -19,6 +19,10 @@
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="../../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+
+    <!-- sweetalert2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+
 </head>
 
 <body class="">
@@ -113,7 +117,7 @@
                                     $query = __ambil($db, "tb_umana", "*", $where);
                                     $r = $query->fetch_object();
                                     ?>
-                                    <form role="form" method="POST" action="tesAbsen.php">
+                                    <form role="form" method="POST" action="">
                                         <div class="mb-1">
                                             <label class="col-sm-2 col-form-label">Nama</label>
                                             <input type="text" class="form-control form-control-lg" value="<?php echo $r->nama; ?>" readonly>
@@ -140,6 +144,114 @@
                                             <button type="submit" name="simpan" value="Simpan" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Absen</button>
                                         </div>
                                     </form>
+
+                                    <?php
+                                    $db = __database();
+                                    $tgl = date('j/n/Y');
+                                    $jamcvk = date('H:i');
+                                    $niu = $_SESSION['id_user'];
+
+                                    if (isset($_POST['simpan'])) {
+                                        # code...
+
+                                        $cekabs = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
+                                        $adyata = $cekabs->num_rows;
+                                        if ($adyata > 0) {
+                                            $abspulang = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
+                                            $r = $abspulang->fetch_array();
+                                            if (empty($r['jam_pulang'])) {
+                                                $pulang = $db->query("UPDATE tb_absen SET jam_pulang='$jamcvk' WHERE niu='$niu' AND tanggal='$tgl'");
+                                                if ($pulang) {
+                                    ?>
+                                                    <script>
+                                                        setTimeout(sweetal, 10)
+
+                                                        function sweetal() {
+                                                            Swal.fire({
+                                                                position: 'center',
+                                                                icon: 'success',
+                                                                title: 'Absen pulang Berhasil',
+                                                                showConfirmButton: false,
+                                                                timer: 3000
+                                                            })
+                                                        }
+                                                    </script>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <script>
+                                                        setTimeout(sweetal, 10)
+
+                                                        function sweetal() {
+                                                            Swal.fire({
+                                                                position: 'center',
+                                                                icon: 'error',
+                                                                title: 'Gagal Absen',
+                                                                showConfirmButton: false,
+                                                                timer: 3000
+                                                            })
+                                                        }
+                                                    </script>
+                                                <?php
+                                                }
+                                            } else {
+                                                ?>
+                                                <script>
+                                                    setTimeout(sweetal, 10)
+
+                                                    function sweetal() {
+                                                        Swal.fire({
+                                                            position: 'center',
+                                                            icon: 'warning',
+                                                            title: 'Mohon Maaf',
+                                                            html: 'Anda sudah mengisi Absen pulang',
+                                                            showConfirmButton: false,
+                                                            timer: 3000
+                                                        })
+                                                    }
+                                                </script>
+                                            <?php
+                                            }
+                                        } else {
+                                            $query = $db->query(" INSERT INTO tb_absen (id, tanggal, niu, kd_instansi, kd_jabatan, jam_masuk) VALUES (NULL, '$tgl', '$niu', '$_POST[instansi]', '$_POST[jabatan]','$jamcvk')");
+                                            if ($query) {
+                                            ?>
+                                                <script>
+                                                    setTimeout(sweetal, 10)
+
+                                                    function sweetal() {
+                                                        Swal.fire({
+                                                            position: 'center',
+                                                            icon: 'success',
+                                                            title: 'Absen Hadir Berhasil',
+                                                            showConfirmButton: false,
+                                                            timer: 3000
+                                                        })
+                                                    }
+                                                </script>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <script>
+                                                    setTimeout(sweetal, 10)
+
+                                                    function sweetal() {
+                                                        Swal.fire({
+                                                            position: 'center',
+                                                            icon: 'error',
+                                                            title: 'Gagal Absen',
+                                                            showConfirmButton: false,
+                                                            timer: 3000
+                                                        })
+                                                    }
+                                                </script>
+                                    <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+
                                 </div>
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
@@ -168,6 +280,9 @@
     <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="../../assets/js/jam.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script>
