@@ -81,7 +81,7 @@ $db = __database();
                     <a type="submit" name="kembali" value="kembali" class="btn btn-warning btn-sm ms-auto align-items-center" href="tabel_user.php">Kembali</a>
                 </form>
                 <?php
-                if ($_POST['simpan']) {
+                if (@$_POST['simpan']) {
                     $data = [
                         'id_user' => null,
                         'username' => $_POST['username'],
