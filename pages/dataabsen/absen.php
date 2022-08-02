@@ -292,8 +292,6 @@
                 damping: '0.5'
             }
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-
-
         }
     </script>
     <!-- Github buttons -->

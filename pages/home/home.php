@@ -1,7 +1,7 @@
 <?php include_once "../inc/sidebar.php"; ?>
-<?php include_once "../inc/header.php";
+<?php include_once "../inc/header.php"; ?>
+<?php include_once "../inc/_database.php"; ?>
 
-?>
 
 <div class="container-fluid py-4" id="">
     <div class="row">
@@ -12,12 +12,17 @@
                         <div class="col-8">
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">Jumlah Umana'</p>
-                                <h5 class="font-weight-bolder">
-                                    112
+                                <h5 class="font-weight-bolder ms-3  h2">
+                                    <?php
+                                    $db = __database();
+                                    $ambil = __ambil($db, "tb_umana");
+                                    echo $jumlahUmana = mysqli_num_rows($ambil);
+                                    ?>
+                                    <span class="text-primary h4 font-weight-bolder">Orang</span>
                                 </h5>
                                 <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+2%</span>
-                                    sejak bulan lalu
+                                    <span class=" h2 font-weight-bolder"></span>
+
                                 </p>
                             </div>
                         </div>
@@ -37,13 +42,17 @@
                         <div class="col-8">
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">Umana' Aktif</p>
-                                <h5 class="font-weight-bolder">
-                                    76
+                                <h5 class="font-weight-bolder h2">
+                                    <?php
+                                    $where = [
+                                        'kd_status' => '1'
+                                    ];
+                                    $ambil = __ambil($db, "tb_umana", '*', $where);
+                                    echo $jumlahAktif = mysqli_num_rows($ambil);
+                                    ?>
+                                    <span class="text-success h4 font-weight-bolder">Orang</span>
                                 </h5>
-                                <p class="mb-0">
-                                    <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                    sejak bulan lalu
-                                </p>
+
                             </div>
                         </div>
                         <div class="col-4 text-end">
@@ -61,15 +70,18 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">ID ADMIN</p>
-                                <h5 class="font-weight-bolder">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Umana' Tidak Aktif</p>
+                                <h5 class="font-weight-bolder h2">
                                     <?php
-                                    echo $_SESSION['level']; ?>
+                                    $where = [
+                                        'kd_status' => '0'
+                                    ];
+                                    $ambil = __ambil($db, "tb_umana", '*', $where);
+                                    echo $jumlahAktif = mysqli_num_rows($ambil);
+                                    ?>
+                                    <span class="text-danger h4 font-weight-bolder">Orang</span>
                                 </h5>
-                                <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                    sejak bulan lalu
-                                </p>
+
                             </div>
                         </div>
                         <div class="col-4 text-end">
@@ -88,12 +100,14 @@
                         <div class="col-8">
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Instansi</p>
-                                <h5 class="font-weight-bolder">
-                                    15
+                                <h5 class="font-weight-bolder h2">
+                                    <?php
+
+                                    $ambil = __ambil($db, "tb_instansi");
+                                    echo $jumlahAktif = mysqli_num_rows($ambil);
+                                    ?>
+                                    <span class="text-success h4 font-weight-bolder">Instansi</span>
                                 </h5>
-                                <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">instansi</span>
-                                </p>
                             </div>
                         </div>
                         <div class="col-4 text-end">
@@ -111,10 +125,7 @@
             <div class="card z-index-2 h-100">
                 <div class="card-header pb-0 pt-3 bg-transparent">
                     <h6 class="text-capitalize">Grafik Kehadiran</h6>
-                    <p class="text-sm mb-0">
-                        <i class="fa fa-arrow-up text-success"></i>
-                        <span class="font-weight-bold">4% peningkatan</span> in 2022
-                    </p>
+
                 </div>
                 <div class="card-body p-3">
                     <div class="chart">
@@ -122,6 +133,36 @@
                     </div>
                 </div>
             </div>
+            <script>
+                var chartData = {
+                    labels: ["January", "February", "March", "April", "May", "June"],
+                    datasets: [{
+                        fillColor: "#79D1CF",
+                        strokeColor: "#79D1CF",
+                        data: [60, 80, 81, 56, 55, 40]
+                    }]
+                };
+
+                var ctx = document.getElementById("#chart-line").getContext("2d");
+                var myLine = new Chart(ctx).Line(chartData, {
+                    showTooltips: false,
+                    onAnimationComplete: function() {
+
+                        var ctx = this.chart.ctx;
+                        ctx.font = this.scale.font;
+                        ctx.fillStyle = this.scale.textColor
+                        ctx.textAlign = "center";
+                        ctx.textBaseline = "bottom";
+
+                        this.datasets.forEach(function(dataset) {
+                            dataset.points.forEach(function(points) {
+                                ctx.fillText(points.value, points.x, points.y - 10);
+                            });
+                        })
+                    }
+                });
+            </script>
+
         </div>
         <div class="col-lg-5">
             <div class="card card-carousel overflow-hidden h-100 p-0">
