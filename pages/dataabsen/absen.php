@@ -61,7 +61,9 @@
                                         include '../inc/_day.php';
                                         $hari = __day();
                                         $tanggal = date('d F Y');
-                                        echo $hari . "," . $tanggal; ?>
+                                        echo $hari . "," . $tanggal;
+                                        $tangg = date('d-m-Y');
+                                        ?>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -129,7 +131,8 @@
                                             $q = $query->fetch_object();
                                             ?>
                                             <label class="col-form-label">Instansi</label>
-                                            <input type="text" name="instansi" class="form-control form-control-lg" value="<?php echo $q->kd_instansi; ?>" readonly>
+                                            <input type="hidden" name="instansi" class="form-control form-control-lg" value="<?php echo $q->kd_instansi; ?>" readonly>
+                                            <input type="text" name="" class="form-control form-control-lg" value="<?php echo $q->instansi; ?>" readonly>
                                         </div>
                                         <div class="mb-1">
                                             <?php
@@ -138,7 +141,11 @@
                                             $q = $query->fetch_object();
                                             ?>
                                             <label class="col-form-label">Jabatan</label>
-                                            <input type="text" name="jabatan" class="form-control form-control-lg" value="<?php echo $q->kd_jabatan; ?>" readonly>
+                                            <input type="hidden" name="jabatan" class="form-control form-control-lg" value="<?php echo $q->kd_jabatan; ?>" readonly>
+                                            <input type="text" name="" class="form-control form-control-lg" value="<?php echo $q->nama_jabatan; ?>" readonly>
+
+
+
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" name="simpan" value="Simpan" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Absen</button>
@@ -153,6 +160,7 @@
 
                                     if (isset($_POST['simpan'])) {
                                         # code...
+
 
                                         $cekabs = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
                                         $adyata = $cekabs->num_rows;
@@ -254,10 +262,6 @@
 
                                 </div>
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                    <p class="mb-4 text-sm mx-auto">
-                                        Login Admin?
-                                        <a href="sign-in.php" class="text-primary text-gradient font-weight-bold">Login</a>
-                                    </p>
                                 </div>
                             </div>
                         </div>

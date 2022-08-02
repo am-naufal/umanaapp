@@ -83,18 +83,17 @@
 <script src="../../assets/js/plugins/chartjs.min.js"></script>
 <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
-
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
 
     gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+    gradientStroke1.addColorStop(0.1, 'rgba(94, 114, 228, 0.0)');
     gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
     new Chart(ctx1, {
-        type: "line",
+        type: "bar",
         data: {
-            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            labels: ["Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Des"],
             datasets: [{
-                label: "Mobile apps",
+                label: "total kehadiran Umana'",
                 tension: 0.4,
                 borderWidth: 0,
                 pointRadius: 0,
@@ -102,7 +101,7 @@
                 backgroundColor: gradientStroke1,
                 borderWidth: 3,
                 fill: true,
-                data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                data: [113, 120, 145, 123, 120, 132, 152, 113, 100],
                 maxBarThickness: 6
 
             }],
@@ -121,17 +120,21 @@
             },
             scales: {
                 y: {
+                    beginAtZero: true,
                     grid: {
                         drawBorder: false,
                         display: true,
                         drawOnChartArea: true,
                         drawTicks: false,
                         borderDash: [5, 5]
+
+
+
                     },
                     ticks: {
                         display: true,
                         padding: 10,
-                        color: '#fbfbfb',
+                        color: '#909090',
                         font: {
                             size: 11,
                             family: "Open Sans",
@@ -150,7 +153,7 @@
                     },
                     ticks: {
                         display: true,
-                        color: '#ccc',
+                        color: '#909090',
                         padding: 20,
                         font: {
                             size: 11,
