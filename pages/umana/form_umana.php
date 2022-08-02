@@ -115,7 +115,7 @@
                     <a type="submit" name="simpan" value="simpan" class="btn btn-warning btn-sm ms-auto align-items-center" href="tabel_umana.php">Kembali</a>
                 </form>
                 <?php
-                if ($_POST['simpan']) {
+                if (@$_POST['simpan']) {
                     $db = __database();
                     $data = [
                         'niu' => $_POST['niu'],
