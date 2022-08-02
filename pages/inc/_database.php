@@ -113,7 +113,7 @@ function __update($sambung, $table, $data, $where = null)
 {
     $query = "UPDATE $table SET ";
     if (!is_array($data)) {
-        return "formst tidak valid";
+        return "format tidak valid";
     } else {
         foreach ($data as $k => $v) {
             $query .= $k . " = '" . $v . "'";
