@@ -1,5 +1,6 @@
 <?php include "../inc/koneksi.php"; ?>
 <?php include "../inc/sidebar.php"; ?>
+<?php include "../inc/_database.php"; ?>
 <!-- End Navbar -->
 <div class="card shadow-lg mx-4 card-profile-bottom">
     <div class="card-body p-3">
@@ -114,12 +115,30 @@
                     <a type="submit" name="simpan" value="simpan" class="btn btn-warning btn-sm ms-auto align-items-center" href="tabel_umana.php">Kembali</a>
                 </form>
                 <?php
-                if (@$_POST['simpan']) {
-                    $query = $koneksi->query("INSERT INTO tb_umana (niu, nama, tmp_lahir, tgl_lahir, alamat, kd_instansi, kd_status, kd_jabatan)
-                                VALUE('$_POST[niu]', '$_POST[nama]', '$_POST[tempat]', '$_POST[tgl_lhr]', '$_POST[alamat]', '$_POST[instansi]', '$_POST[status]', '$_POST[jabatan]')");
+                if ($_POST['simpan']) {
+                    $db = __database();
+                    $data = [
+                        'niu' => $_POST['niu'],
+                        'nama' => $_POST['nama'],
+                        'tmp_lahir' => $_POST['tempat'],
+                        'tgl_lahir' => $_POST['tgl_lhr'],
+                        'alamat' => $_POST['alamat'],
+                        'kd_instansi' => $_POST['instansi'],
+                        'kd_status' => $_POST['status'],
+                        'kd_jabatan' => $_POST['jabatan'],
+
+
+                    ];
+                    $query = __simpan($db, "tb_umana", $data);
+
                     if ($query) {
+
+                        // $query = $koneksi->query("INSERT INTO tb_umana (niu, nama, tmp_lahir, tgl_lahir, alamat, kd_instansi, kd_status, kd_jabatan)
+                        //             VALUE('$_POST[niu]', '$_POST[nama]', '$_POST[tempat]', '$_POST[tgl_lhr]', '$_POST[alamat]', '$_POST[instansi]', '$_POST[status]', '$_POST[jabatan]')");
+                        // if ($query) {
                 ?>
                         <script>
+                            alert("bismillah")
                             window.location.href = 'tabel_umana.php';
                         </script>
                 <?php
