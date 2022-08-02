@@ -28,7 +28,6 @@
                             <tbody>
                                 <?php
                                 include "./../inc/koneksi.php";
-                                $tampil = $koneksi->query("SELECT * FROM tb_instansi");
                                 $no = 1;
                                 while ($r = $tampil->fetch_array()) {
                                 ?>
