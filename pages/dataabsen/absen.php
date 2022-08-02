@@ -213,7 +213,7 @@
                                             <?php
                                             }
                                         } else {
-                                            $query = $db->query(" INSERT INTO tb_absen (id, tanggal, niu, kd_instansi, kd_jabatan, jam_masuk) VALUES (NULL, '$tgl', '$niu', '$_POST[instansi]', '$_POST[jabatan]','$jamcvk')");
+                                            $query = $db->query(" INSERT INTO tb_absen (tanggal, niu, kd_instansi, kd_jabatan, jam_masuk) VALUES ('$tgl', '$niu', '$_POST[instansi]', '$_POST[jabatan]','$jamcvk')");
                                             if ($query) {
                                             ?>
                                                 <script>
