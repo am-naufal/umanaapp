@@ -50,7 +50,7 @@
                 <?php
                 if (@$_POST['simpan']) {
                     $query = $koneksi->query("INSERT INTO tb_instansi(kd_instansi, instansi)
-                                VALUE('$_POST[kd_instansi]', '$_POST[instansi]')");
+                                VALUES ('$_POST[kd_instansi]', '$_POST[instansi]')");
                     if ($query) {
                 ?>
                         <script>
