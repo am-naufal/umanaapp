@@ -51,19 +51,19 @@ $db = __database();
             <div class="card">
                 <div class="card-header pb-0">
                 </div>
-                <form class="card-body" method="post" action="tabel_user.php">
+                <form class="card-body" method="post" action="">
                     <div class="row">
-                        <input type="hidden" id="" name="id_user" class="form-control" value="" placeholder=" ID'" readonly>
+                        <input type="hidden" id="" name="id_user" class="form-control" placeholder=" ID'" readonly>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Nama Admin'<span class="help"> e.x. "Ahmad Zeinuri"</label>
-                                <input type="text" id="" name="username" class="form-control" value="" placeholder="Nama Admin">
+                                <input type="text" id="" name="username" class="form-control" placeholder="Nama Admin">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Password</label>
-                                <input type="password" id="" name="password" class="form-control" value="" placeholder="Password">
+                                <input type="password" id="" name="password" class="form-control" placeholder="Password">
                             </div>
                         </div>
                     </div>
@@ -78,12 +78,17 @@ $db = __database();
                     </div>
                     <hr class="horizontal dark">
                     <button type="submit" name="simpan" value="simpan" class="btn btn-primary btn-sm ms-auto align-items-center">Simpan</button>
-                    <a type="submit" name="simpan" value="simpan" class="btn btn-warning btn-sm ms-auto align-items-center" href="tabel_user.php">Kembali</a>
+                    <a type="submit" name="kembali" value="kembali" class="btn btn-warning btn-sm ms-auto align-items-center" href="tabel_user.php">Kembali</a>
                 </form>
                 <?php
-                if (@$_POST['simpan']) {
-                    $data = ['username' => $_POST['username'], 'password' => sha1($_POST['password'])];
+                if ($_POST['simpan']) {
+                    $data = [
+                        'id_user' => null,
+                        'username' => $_POST['username'],
+                        'password' => sha1($_POST['password'])
+                    ];
                     $save = __simpan($db, "tb_user", $data);
+
                     if ($save) {
 
                 ?>
