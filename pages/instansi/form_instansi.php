@@ -54,6 +54,17 @@
                     if ($query) {
                 ?>
                         <script>
+                            setTimeout(sweetal, 10)
+
+                            function sweetal() {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Berhasil Simpan',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                })
+                            }
                             window.location.href = 'tabel_instansi.php';
                         </script>
                 <?php
