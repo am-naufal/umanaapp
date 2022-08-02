@@ -6,7 +6,7 @@
                     © <script>
                         document.write(new Date().getFullYear())
                     </script>,
-                    dibuat oleh <i class="fa fa-book"></i> by
+                    dibuat oleh <i class="fa fa-users"></i> by
                     <a class="font-weight-bold" target="_blank">Kelompok 1</a>
                     bismillah bisa!
                 </div>
