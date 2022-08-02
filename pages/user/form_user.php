@@ -85,7 +85,8 @@ $db = __database();
                     $data = [
                         'id_user' => null,
                         'username' => $_POST['username'],
-                        'password' => sha1($_POST['password'])
+                        'password' => sha1($_POST['password']),
+                        'level' => 'admin'
                     ];
                     $save = __simpan($db, "tb_user", $data);
 
