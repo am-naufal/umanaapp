@@ -80,7 +80,7 @@
         </div>
         <div class="col-md-4">
             <div class="card card-profile">
-                <img src="../assets/img/kantor pusat.jpg" alt="Image placeholder" class="card-img-top">
+                <img src="../../assets/img/kantor pusat.jpg" alt="Image placeholder" class="card-img-top">
                 <div class="card-body pt-0">
                     <div class="text-center mt-4">
                         <h5>
