@@ -98,7 +98,7 @@ $db = __database();
                             echo " 
                             <script>
                             alert('berhasil simpan !pss');
-                          
+                        
                         </script>";
                         ?>
                             <script>
