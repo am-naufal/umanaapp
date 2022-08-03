@@ -56,7 +56,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link me-2" href="sign_in.php">
+                  <a class="nav-link me-2" href="#">
                     <i class="fas fa-key opacity-6 text-dark me-1"></i>
                     Sign In
                   </a>
@@ -101,6 +101,8 @@
                   <p class="mb-4 text-sm mx-auto">
                     Apakah anda sudah terdaftar?
                     <a href="sign-up.php" class="text-primary text-gradient font-weight-bold">Daftar</a>
+                    atau
+                    <a href="sign-up.php" class="text-primary text-gradient font-weight-bold">Ubah Identitas</a>
                   </p>
                 </div>
               </div>
