@@ -69,7 +69,7 @@
                         </script>
                 <?php
                     } else {
-                        echo "Data gagal disimpan";
+                        echo "Data Sudah Ada";
                     }
                 }
                 ?>
