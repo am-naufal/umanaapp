@@ -110,6 +110,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Password</label>
+                                <input type="password" id="" name="password" class="form-control" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
                     <hr class="horizontal dark">
                     <button type="submit" name="simpan" value="simpan" class="btn btn-primary btn-sm ms-auto align-items-center">Simpan</button>
                     <a type="submit" name="simpan" value="simpan" class="btn btn-warning btn-sm ms-auto align-items-center" href="tabel_umana.php">Kembali</a>
@@ -126,6 +134,7 @@
                         'kd_instansi' => $_POST['instansi'],
                         'kd_status' => $_POST['status'],
                         'kd_jabatan' => $_POST['jabatan'],
+                        'password' => sha1($_POST['password'])
 
 
                     ];
