@@ -162,7 +162,7 @@
                         </script>
                 <?php
                     } else {
-                        echo "Data gagal disimpan";
+                        echo "Data gagal simpan";
                     }
                 }
                 ?>
