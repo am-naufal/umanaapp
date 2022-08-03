@@ -36,7 +36,7 @@
                                         <td class="text-sm font-weight-bold mb-0"><?php echo $r['nama_jabatan']; ?></td>
                                         <td class="text-xs font-weight-bold opacity-7 ps-1" style="text-align:center;">
                                             <a class="btn btn-link text-dark px-3 mb-0" href="edit_jabatan.php?id=<?php echo $r['kd_jabatan']; ?>"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Ubah</a>
-                                            <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="hapus_jabatan.php?id=<?php echo $r['kd_jabatan']; ?>"><i class="far fa-trash-alt me-2"></i>Hapus</a>
+
                                         </td>
                                     </tr>
                                 <?php

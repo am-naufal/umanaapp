@@ -68,7 +68,7 @@
                         </script>
                 <?php
                     } else {
-                        echo "Data gagal disimpan";
+                        echo "kode & nama jabatan sudah di gunakan";
                     }
                 }
                 ?>
