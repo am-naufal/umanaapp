@@ -160,348 +160,356 @@
 
                                     if (isset($_POST['simpan'])) {
 
-// =========================== EDIT SYSTEM ======================
+                                        // =========================== EDIT SYSTEM ======================
 
-//===================FUNCTION======================//                            
-function cekJam($jam, $menit, $detik = null)
-{
-    $time   = (int)(mktime($jam, $menit, $detik) - time());
+                                        //===================FUNCTION======================//                            
+                                        function cekJam($jam, $menit, $detik = null)
+                                        {
+                                            $time   = (int)(mktime($jam, $menit, $detik) - time());
 
-    if ($time < 0) {
-        return $cek = true;
-    } else {
-        return $cek = false;
-    }
-}
+                                            if ($time < 0) {
+                                                return $cek = true;
+                                            } else {
+                                                return $cek = false;
+                                            }
+                                        }
 
-//===============AND FUNCTION====================//
+                                        //===============AND FUNCTION====================//
 
-$cekin = $db->query("SELECT kd_pagi FROM tb_umana WHERE niu='$niu'");
+                                        $cekin = $db->query("SELECT kd_pagi FROM tb_umana WHERE niu='$niu'");
                                         $adyata1 = $cekin->num_rows;
-if($adyata1>0) { 
-    $cekabs = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
-    $adyata = $cekabs->num_rows;
-    if ($adyata >0){
-        $abspulang = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
-        $r = $abspulang->fetch_array();
-            if(empty($r['jam_pulang'])){
-                // pulang
-                if (cekJam(9,45) ){
-                    ?>
-                    <script>
-                        setTimeout(sweetal, 10)
+                                        if ($adyata1 > 0) {
+                                            $cekabs = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
+                                            $adyata = $cekabs->num_rows;
+                                            if ($adyata > 0) {
+                                                $abspulang = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
+                                                $r = $abspulang->fetch_array();
+                                                if (empty($r['jam_pulang'])) {
+                                                    // pulang
+                                                    if (cekJam(9, 45)) {
+                                    ?>
+                                                        <script>
+                                                            setTimeout(sweetal, 10)
 
-                        function sweetal() {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: 'Belum Waktunya Pulang',
-                                showConfirmButton: false,
-                                timer: 3000
-                            })
-                        }
-                    </script>
-                <?php
-                } else {
-                    $pulang = $db->query("UPDATE tb_absen SET jam_pulang='$jamcvk' WHERE niu='$niu' AND tanggal='$tgl'");
-                    if ($pulang) {
-        ?>
-                        <script>
-                            setTimeout(sweetal, 10)
+                                                            function sweetal() {
+                                                                Swal.fire({
+                                                                    position: 'center',
+                                                                    icon: 'error',
+                                                                    title: 'Belum Waktunya Pulang',
+                                                                    showConfirmButton: false,
+                                                                    timer: 3000
+                                                                })
+                                                            }
+                                                        </script>
+                                                        <?php
+                                                    } else {
+                                                        $pulang = $db->query("UPDATE tb_absen SET jam_pulang='$jamcvk' WHERE niu='$niu' AND tanggal='$tgl'");
+                                                        if ($pulang) {
+                                                        ?>
+                                                            <script>
+                                                                setTimeout(sweetal, 10)
 
-                            function sweetal() {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'success',
-                                    title: 'Absen pulang Berhasil',
-                                    showConfirmButton: false,
-                                    timer: 3000
-                                })
-                            }
-                        </script>
-                    <?php
-                    } else {
-                    ?>
-                        <script>
-                            setTimeout(sweetal, 10)
+                                                                function sweetal() {
+                                                                    Swal.fire({
+                                                                        position: 'center',
+                                                                        icon: 'success',
+                                                                        title: 'Absen pulang Berhasil',
+                                                                        showConfirmButton: false,
+                                                                        timer: 3000
+                                                                    })
+                                                                }
+                                                            </script>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <script>
+                                                                setTimeout(sweetal, 10)
 
-                            function sweetal() {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'error',
-                                    title: 'Gagal Absen',
-                                    showConfirmButton: false,
-                                    timer: 3000
-                                })
-                            }
-                        </script>
-                    <?php
-                    }
-                } //end
-            } else {
-                // jam_masuk
-                //masuk absen
-                $query = $db->query(" INSERT INTO tb_absen (tanggal, niu, kd_instansi,kd_pagi, kd_jabatan, jam_masuk) VALUES ('$tgl', '$niu', '$_POST[kd_pagi]', '$_POST[kd_jabatan]','$jamcvk')");
-                if ($query) {
-                ?>
-                    <script>
-                        setTimeout(sweetal, 10)
+                                                                function sweetal() {
+                                                                    Swal.fire({
+                                                                        position: 'center',
+                                                                        icon: 'error',
+                                                                        title: 'Gagal Absen',
+                                                                        showConfirmButton: false,
+                                                                        timer: 3000
+                                                                    })
+                                                                }
+                                                            </script>
+                                                        <?php
+                                                        }
+                                                    } //end
+                                                } else {
+                                                    // jam_masuk
+                                                    //masuk absen
+                                                    $query = $db->query(" INSERT INTO tb_absen (tanggal, niu, kd_instansi,kd_pagi, kd_jabatan, jam_masuk) VALUES ('$tgl', '$niu', '$_POST[kd_pagi]', '$_POST[kd_jabatan]','$jamcvk')");
+                                                    if ($query) {
+                                                        ?>
+                                                        <script>
+                                                            setTimeout(sweetal, 10)
 
-                        function sweetal() {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Absen Hadir Berhasil',
-                                showConfirmButton: false,
-                                timer: 3000
-                            })
-                        }
-                    </script>
-                <?php
-                } else {
-                ?>
-                    <script>
-                        setTimeout(sweetal, 10)
+                                                            function sweetal() {
+                                                                Swal.fire({
+                                                                    position: 'center',
+                                                                    icon: 'success',
+                                                                    title: 'Absen Hadir Berhasil',
+                                                                    showConfirmButton: false,
+                                                                    timer: 3000
+                                                                })
+                                                            }
+                                                        </script>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <script>
+                                                            setTimeout(sweetal, 10)
 
-                        function sweetal() {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: 'Gagal Absen',
-                                showConfirmButton: false,
-                                timer: 3000
-                            })
-                        }
-                    </script>
-        <?php
-                }
-            
-            }
+                                                            function sweetal() {
+                                                                Swal.fire({
+                                                                    position: 'center',
+                                                                    icon: 'error',
+                                                                    title: 'Gagal Absen',
+                                                                    showConfirmButton: false,
+                                                                    timer: 3000
+                                                                })
+                                                            }
+                                                        </script>
+                                                        <?php
+                                                    }
+                                                }
+                                            } else {
 
-    } else {
+                                                $cekins = $db->query("SELECT kd_instansi FROM tb_umana WHERE niu='$niu'");
+                                                $adyata1 = $cekins->num_rows;
+                                                if ($cekins > 0) {
+                                                    //=======###################======SIANG ==========########################################==========================
+                                                    $abspulang = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
+                                                    $r = $abspulang->fetch_array();
+                                                    if (empty($r['jam_pulang'])) {
+                                                        // pulang
+                                                        if (cekJam(15, 45)) {
+                                                        ?>
+                                                            <script>
+                                                                setTimeout(sweetal, 10)
 
-        $cekins = $db->query("SELECT kd_instansi FROM tb_umana WHERE niu='$niu'");
-                                        $adyata1 = $cekins->num_rows;
-        if ($cekins > 0) {
-            //=======###################======SIANG ==========########################################==========================
-            $abspulang = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
-            $r = $abspulang->fetch_array();
-            if(empty($r['jam_pulang'])){
-                // pulang
-                if (cekJam(15,45) ){
-                    ?>
-                    <script>
-                        setTimeout(sweetal, 10)
-                        
-                        function sweetal() {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: 'Belum Waktunya Pulang',
-                                showConfirmButton: false,
-                                timer: 3000
-                            })
-                        }
-                        </script>
-                <?php
-                } else {
-                    $pulang = $db->query("UPDATE tb_absen SET jam_pulang='$jamcvk' WHERE niu='$niu' AND tanggal='$tgl'");
-                    if ($pulang) {
-                        ?>
-                        <script>
-                            setTimeout(sweetal, 10)
-                            
-                            function sweetal() {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'success',
-                                    title: 'Absen pulang Berhasil',
-                                    showConfirmButton: false,
-                                    timer: 3000
-                                })
-                            }
-                            </script>
-                    <?php
-                    } else {
-                        ?>
-                        <script>
-                            setTimeout(sweetal, 10)
-                            
-                            function sweetal() {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'error',
-                                    title: 'Gagal Absen',
-                                    showConfirmButton: false,
-                                    timer: 3000
-                                })
-                            }
-                            </script>
-                    <?php
-                    }
-                } //end
-            } else {
-                //###################======MASUK=======#####################
-                $query = $db->query(" INSERT INTO tb_absen (tanggal, niu, kd_instansi,kd_pagi, kd_jabatan, jam_masuk) VALUES ('$tgl', '$niu', '$_POST[kd_instansi]', '$_POST[kd_jabatan]','$jamcvk')");
-                if ($query) {
-                    ?>
-                    <script>
-                        setTimeout(sweetal, 10)
-                        
-                        function sweetal() {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Absen Hadir Berhasil',
-                                showConfirmButton: false,
-                                timer: 3000
-                            })
-                        }
-                        </script>
-                <?php
-                } else {
-                    ?>
-                    <script>
-                        setTimeout(sweetal, 10)
-                        
-                        function sweetal() {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: 'Gagal Absen',
-                                showConfirmButton: false,
-                                timer: 3000
-                            })
-                        }
-                        </script>
-        <?php
-                }
-                
-            }
-        } else {
-            ?>
-                    <script>
-                        setTimeout(sweetal, 10)
-                        
-                        function sweetal() {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: 'tidak terdaftar di instansi',
-                                showConfirmButton: false,
-                                timer: 3000
-                            })
-                        }
-                        </script>
-        <?php
-        }
-    }
+                                                                function sweetal() {
+                                                                    Swal.fire({
+                                                                        position: 'center',
+                                                                        icon: 'error',
+                                                                        title: 'Belum Waktunya Pulang',
+                                                                        showConfirmButton: false,
+                                                                        timer: 3000
+                                                                    })
+                                                                }
+                                                            </script>
+                                                            <?php
+                                                        } else {
+                                                            $pulang = $db->query("UPDATE tb_absen SET jam_pulang='$jamcvk' WHERE niu='$niu' AND tanggal='$tgl'");
+                                                            if ($pulang) {
+                                                            ?>
+                                                                <script>
+                                                                    setTimeout(sweetal, 10)
+
+                                                                    function sweetal() {
+                                                                        Swal.fire({
+                                                                            position: 'center',
+                                                                            icon: 'success',
+                                                                            title: 'Absen pulang Berhasil',
+                                                                            showConfirmButton: false,
+                                                                            timer: 3000
+                                                                        })
+                                                                    }
+                                                                </script>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <script>
+                                                                    setTimeout(sweetal, 10)
+
+                                                                    function sweetal() {
+                                                                        Swal.fire({
+                                                                            position: 'center',
+                                                                            icon: 'error',
+                                                                            title: 'Gagal Absen',
+                                                                            showConfirmButton: false,
+                                                                            timer: 3000
+                                                                        })
+                                                                    }
+                                                                </script>
+                                                            <?php
+                                                            }
+                                                        } //end
+                                                    } else {
+                                                        //###################======MASUK=======#####################
+                                                        $query = $db->query(" INSERT INTO tb_absen (tanggal, niu, kd_instansi,kd_pagi, kd_jabatan, jam_masuk) VALUES ('$tgl', '$niu', '$_POST[kd_instansi]', '$_POST[kd_jabatan]','$jamcvk')");
+                                                        if ($query) {
+                                                            ?>
+                                                            <script>
+                                                                setTimeout(sweetal, 10)
+
+                                                                function sweetal() {
+                                                                    Swal.fire({
+                                                                        position: 'center',
+                                                                        icon: 'success',
+                                                                        title: 'Absen Hadir Berhasil',
+                                                                        showConfirmButton: false,
+                                                                        timer: 3000
+                                                                    })
+                                                                }
+                                                            </script>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <script>
+                                                                setTimeout(sweetal, 10)
+
+                                                                function sweetal() {
+                                                                    Swal.fire({
+                                                                        position: 'center',
+                                                                        icon: 'error',
+                                                                        title: 'Gagal Absen',
+                                                                        showConfirmButton: false,
+                                                                        timer: 3000
+                                                                    })
+                                                                }
+                                                            </script>
+                                                    <?php
+                                                        }
+                                                    }
+                                                } else {
+                                                    ?>
+                                                    <script>
+                                                        setTimeout(sweetal, 10)
+
+                                                        function sweetal() {
+                                                            Swal.fire({
+                                                                position: 'center',
+                                                                icon: 'error',
+                                                                title: 'tidak terdaftar di instansi',
+                                                                showConfirmButton: false,
+                                                                timer: 3000
+                                                            })
+                                                        }
+                                                    </script>
+                                            <?php
+                                                }
+                                            }
 
 
 
-//=============================== END EDIT SYSTEM ============================
+                                            //=============================== END EDIT SYSTEM ============================
 
 
 
 
-                                //         $cekabs = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
-                                //         $adyata = $cekabs->num_rows;
-                                //         if ($adyata > 0) {
-                                //             $abspulang = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
-                                //             $r = $abspulang->fetch_array();
-                                //             if (empty($r['jam_pulang'])) {
-                                //  //pulang 
-                                //                 $pulang = $db->query("UPDATE tb_absen SET jam_pulang='$jamcvk' WHERE niu='$niu' AND tanggal='$tgl'");
-                                //                 if ($pulang) {
-                                //     ?>
-                                //                     <script>
-                                //                         setTimeout(sweetal, 10)
+                                            //         $cekabs = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
+                                            //         $adyata = $cekabs->num_rows;
+                                            //         if ($adyata > 0) {
+                                            //             $abspulang = $db->query("SELECT * FROM tb_absen WHERE niu='$niu' AND tanggal='$tgl'");
+                                            //             $r = $abspulang->fetch_array();
+                                            //             if (empty($r['jam_pulang'])) {
+                                            //  //pulang 
+                                            //                 $pulang = $db->query("UPDATE tb_absen SET jam_pulang='$jamcvk' WHERE niu='$niu' AND tanggal='$tgl'");
+                                            //                 if ($pulang) {
+                                            //     
+                                            ?>
+                                            // <script>
+                                                //                         setTimeout(sweetal, 10)
 
-                                //                         function sweetal() {
-                                //                             Swal.fire({
-                                //                                 position: 'center',
-                                //                                 icon: 'success',
-                                //                                 title: 'Absen pulang Berhasil',
-                                //                                 showConfirmButton: false,
-                                //                                 timer: 3000
-                                //                             })
-                                //                         }
-                                //                     </script>
-                                //                 <?php
-                                //                 } else {
-                                //                 ?>
-                                //                     <script>
-                                //                         setTimeout(sweetal, 10)
+                                                //                         function sweetal() {
+                                                //                             Swal.fire({
+                                                //                                 position: 'center',
+                                                //                                 icon: 'success',
+                                                //                                 title: 'Absen pulang Berhasil',
+                                                //                                 showConfirmButton: false,
+                                                //                                 timer: 3000
+                                                //                             })
+                                                //                         }
+                                                //                     
+                                            </script>
+                                            // <?php
+                                                //                 } else {
+                                                //                 
+                                                ?>
+                                            // <script>
+                                                //                         setTimeout(sweetal, 10)
 
-                                //                         function sweetal() {
-                                //                             Swal.fire({
-                                //                                 position: 'center',
-                                //                                 icon: 'error',
-                                //                                 title: 'Gagal Absen',
-                                //                                 showConfirmButton: false,
-                                //                                 timer: 3000
-                                //                             })
-                                //                         }
-                                //                     </script>
-                                //                 <?php
-                                //                 }
-                                //             } else {
-                                //                 ?>
-                                //                 <script>
-                                //                     setTimeout(sweetal, 10)
+                                                //                         function sweetal() {
+                                                //                             Swal.fire({
+                                                //                                 position: 'center',
+                                                //                                 icon: 'error',
+                                                //                                 title: 'Gagal Absen',
+                                                //                                 showConfirmButton: false,
+                                                //                                 timer: 3000
+                                                //                             })
+                                                //                         }
+                                                //                     
+                                            </script>
+                                            // <?php
+                                                //                 }
+                                                //             } else {
+                                                //                 
+                                                ?>
+                                            // <script>
+                                                //                     setTimeout(sweetal, 10)
 
-                                //                     function sweetal() {
-                                //                         Swal.fire({
-                                //                             position: 'center',
-                                //                             icon: 'warning',
-                                //                             title: 'Mohon Maaf',
-                                //                             html: 'Anda sudah mengisi Absen pulang',
-                                //                             showConfirmButton: false,
-                                //                             timer: 3000
-                                //                         })
-                                //                     }
-                                //                 </script>
-                                //             <?php
-                                //             }
-                                //         } else {
-                                //             //masuk absen
-                                //             $query = $db->query(" INSERT INTO tb_absen (tanggal, niu, kd_instansi, kd_jabatan, jam_masuk) VALUES ('$tgl', '$niu', '$_POST[instansi]', '$_POST[jabatan]','$jamcvk')");
-                                //             if ($query) {
-                                //             ?>
-                                //                 <script>
-                                //                     setTimeout(sweetal, 10)
+                                                //                     function sweetal() {
+                                                //                         Swal.fire({
+                                                //                             position: 'center',
+                                                //                             icon: 'warning',
+                                                //                             title: 'Mohon Maaf',
+                                                //                             html: 'Anda sudah mengisi Absen pulang',
+                                                //                             showConfirmButton: false,
+                                                //                             timer: 3000
+                                                //                         })
+                                                //                     }
+                                                //                 
+                                            </script>
+                                            // <?php
+                                                //             }
+                                                //         } else {
+                                                //             //masuk absen
+                                                //             $query = $db->query(" INSERT INTO tb_absen (tanggal, niu, kd_instansi, kd_jabatan, jam_masuk) VALUES ('$tgl', '$niu', '$_POST[instansi]', '$_POST[jabatan]','$jamcvk')");
+                                                //             if ($query) {
+                                                //             
+                                                ?>
+                                            // <script>
+                                                //                     setTimeout(sweetal, 10)
 
-                                //                     function sweetal() {
-                                //                         Swal.fire({
-                                //                             position: 'center',
-                                //                             icon: 'success',
-                                //                             title: 'Absen Hadir Berhasil',
-                                //                             showConfirmButton: false,
-                                //                             timer: 3000
-                                //                         })
-                                //                     }
-                                //                 </script>
-                                //             <?php
-                                //             } else {
-                                //             ?>
-                                //                 <script>
-                                //                     setTimeout(sweetal, 10)
+                                                //                     function sweetal() {
+                                                //                         Swal.fire({
+                                                //                             position: 'center',
+                                                //                             icon: 'success',
+                                                //                             title: 'Absen Hadir Berhasil',
+                                                //                             showConfirmButton: false,
+                                                //                             timer: 3000
+                                                //                         })
+                                                //                     }
+                                                //                 
+                                            </script>
+                                            // <?php
+                                                //             } else {
+                                                //             
+                                                ?>
+                                            // <script>
+                                                //                     setTimeout(sweetal, 10)
 
-                                //                     function sweetal() {
-                                //                         Swal.fire({
-                                //                             position: 'center',
-                                //                             icon: 'error',
-                                //                             title: 'Gagal Absen',
-                                //                             showConfirmButton: false,
-                                //                             timer: 3000
-                                //                         })
-                                //                     }
-                                //                 </script>
-                                //     <?php
-                                //             }
-                                //         }
-                              }
-                              ?>
+                                                //                     function sweetal() {
+                                                //                         Swal.fire({
+                                                //                             position: 'center',
+                                                //                             icon: 'error',
+                                                //                             title: 'Gagal Absen',
+                                                //                             showConfirmButton: false,
+                                                //                             timer: 3000
+                                                //                         })
+                                                //                     }
+                                                //                 
+                                            </script>
+                                            // <?php
+                                                //             }
+                                                //         }
+                                            }
+                                        }
+                                                ?>
 
 
                                 </div>
