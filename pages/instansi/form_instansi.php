@@ -69,7 +69,7 @@
                         </script>
                 <?php
                     } else {
-                        echo "Kode & Nama instansi telah digunakan";
+                        echo "Data Sudah Ada";
                     }
                 }
                 ?>
