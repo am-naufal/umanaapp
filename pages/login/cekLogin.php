@@ -5,7 +5,7 @@ $db = __database();
 $username = $_POST['user'];
 $password = sha1($_POST['password']);
 $password1 = $_POST['password'];
-// cek apakah user login admin, umana, atau mahasiswa
+// cek apakah user login admin, umana,
 $where = ['username' => $username, 'password' => $password];
 $cekUsers = __ambil($db, "tb_user", "*", $where);
 if ($cekUsers->num_rows > 0) {
