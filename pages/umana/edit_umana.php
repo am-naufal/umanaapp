@@ -29,7 +29,7 @@
                 <?php include "../inc/koneksi.php";
                 $niu = $_GET['id'];
                 $tampil = $koneksi->query("SELECT * FROM tb_umana AS u LEFT JOIN tb_instansi AS i ON u.kd_instansi=i.kd_instansi
-                 LEFT JOIN tb_status AS s ON u.kd_status=s.kd_status 
+                LEFT JOIN tb_status AS s ON u.kd_status=s.kd_status 
                 LEFT JOIN tb_jabatan AS j ON u.kd_jabatan=j.kd_jabatan WHERE u.niu='$niu'");
                 $r = $tampil->fetch_object();
                 ?>
@@ -116,6 +116,15 @@
                         </div>
                     </div>
                     <hr class="horizontal dark">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Password</label>
+                                <input type="password" id="" name="password" class="form-control" placeholder="Password Baru">
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="horizontal dark">
                     <button type="submit" name="simpan" value="simpan" class="btn btn-primary btn-sm ms-auto align-items-center">Simpan</button>
                     <a type="submit" name="simpan" value="simpan" class="btn btn-warning btn-sm ms-auto align-items-center" href="tabel_umana.php">Kembali</a>
                 </form>
@@ -128,22 +137,12 @@
                                                         kd_instansi='$_POST[instansi]',
                                                         kd_status='$_POST[status]',
                                                         kd_jabatan='$_POST[jabatan]'
+                                                        'password'='$_POST[password]'
                                                         WHERE niu='$_POST[niu]'");
 
                     if ($query) {
                 ?>
                         <script>
-                            setTimeout(sweetal, 10)
-
-                            function sweetal() {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'success',
-                                    title: 'Berhasil Simpan',
-                                    showConfirmButton: false,
-                                    timer: 3000
-                                })
-                            }
                             window.location.href = 'tabel_umana.php';
                         </script>
                 <?php
