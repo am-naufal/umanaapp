@@ -18,10 +18,10 @@ if ($cekUsers->num_rows > 0) {
     <script> window.location.href='../home/home.php'</script>
     ";
 } else {
-    $where = ['username' => $username, 'password' => $password];
-    $cekUmanaa = __ambil($db, "tb_user", "*", $where);
+    $where = ['nama' => $username, 'password' => $password];
+    $cekUmanaa = __ambil($db, "tb_umana", "*", $where);
     if ($cekUmanaa->num_rows > 0) {
-        $p = $cekumana->fetch_object();
+        $p = $cekUmanaa->fetch_object();
         $_SESSION['id_user'] = $p->niu;
         $_SESSION['nama'] = $p->nama;
         $_SESSION['level'] = 'umana';
