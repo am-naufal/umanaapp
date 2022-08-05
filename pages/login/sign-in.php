@@ -101,8 +101,6 @@
                   <p class="mb-4 text-sm mx-auto">
                     Apakah anda sudah terdaftar?
                     <a href="sign-up.php" class="text-primary text-gradient font-weight-bold">Daftar</a>
-                    atau
-                    <a href="sign-up.php" class="text-primary text-gradient font-weight-bold">Ubah Identitas</a>
                   </p>
                 </div>
               </div>
