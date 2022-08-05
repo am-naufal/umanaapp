@@ -18,27 +18,16 @@ if ($cekUsers->num_rows > 0) {
     <script> window.location.href='../home/home.php'</script>
     ";
 } else {
-    if (!empty($password)) {
-        $whereumana = [
-            'nama' => $username,
-            'password' => $password
-        ];
-        $cekumana = __ambil($db, "tb_umana", "*", $whereumana);
-        if ($cekumana->num_rows > 0) {
-            $p = $cekumana->fetch_object();
-            $_SESSION['id_user'] = $p->niu;
-            $_SESSION['nama'] = $p->nama;
-            $_SESSION['level'] = 'umana';
-            $_SESSION['status_login'] = true;
-            echo " <script> window.location.href='../dataabsen/absen.php'
+    $where = ['username' => $username, 'password' => $password];
+    $cekUmanaa = __ambil($db, "tb_user", "*", $where);
+    if ($cekUmanaa->num_rows > 0) {
+        $p = $cekumana->fetch_object();
+        $_SESSION['id_user'] = $p->niu;
+        $_SESSION['nama'] = $p->nama;
+        $_SESSION['level'] = 'umana';
+        $_SESSION['status_login'] = true;
+        echo " <script> window.location.href='../dataabsen/absen.php'
         </script>";
-        } else {
-            echo " 
-        <script>
-        alert('Maaf, Anda tidak memiliki akses ke sistem');
-        window.location.href='sign-in.php';
-    </script>";
-        }
     } else {
         $whereumana = [
             'nama' => $username,
@@ -52,13 +41,13 @@ if ($cekUsers->num_rows > 0) {
             $_SESSION['level'] = 'umana';
             $_SESSION['status_login'] = true;
             echo " <script> window.location.href='../dataabsen/absen.php'
-        </script>";
+             </script>";
         } else {
             echo " 
-        <script>
-        alert('Maaf, Anda tidak memiliki akses ke sistem');
-        window.location.href='sign-in.php';
-    </script>";
+                    <script>
+                    alert('Maaf, Anda tidak memiliki akses ke sistem');
+                    window.location.href='sign-in.php';
+                    </script>";
         }
     }
 }
