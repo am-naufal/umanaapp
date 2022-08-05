@@ -47,7 +47,7 @@
                                         <td class="text-sm font-weight-bold mb-0"><?php echo $r['nama']; ?></td>
                                         <td class="text-sm font-weight-bold mb-0"><?php echo $r['tmp_lahir'] . ", " . $r['tgl_lahir']; ?></td>
                                         <td class="text-xs font-weight-bold mb-0 "><?php echo $r['instansi']; ?></td>
-                                        <td class="text-xs font-weight-bold mb-0 "><?php echo $r['nama_jabatan']; ?></td>
+                                        <td class="text-xs font-weight-bold mb-0 "><?php echo $r['jabatan']; ?></td>
                                         <td class="align-middle text-sm">
                                             <span class="badge badge-sm bg-gradient-secondary"><?php echo $r['status']; ?></span>
                                         </td>

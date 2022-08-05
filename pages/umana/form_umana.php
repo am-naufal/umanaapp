@@ -94,7 +94,7 @@
                                     <?php
                                     $jabatan = $koneksi->query("SELECT * FROM tb_jabatan");
                                     while ($c = $jabatan->fetch_array()) {
-                                        echo "<option value= '$c[kd_jabatan]'>$c[nama_jabatan]</option>";
+                                        echo "<option value= '$c[kd_jabatan]'>$c[jabatan]</option>";
                                     }
                                     ?>
                                 </select>

@@ -38,7 +38,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Nama Jabatan<span class="help"> e.x. "Guru"</label>
-                                <input type="text" id="" name="nama_jabatan" class="form-control" placeholder="Jabatan">
+                                <input type="text" id="" name="jabatan" class="form-control" placeholder="Jabatan">
                             </div>
                         </div>
                     </div>
@@ -48,8 +48,8 @@
                 </form>
                 <?php
                 if (@$_POST['simpan']) {
-                    $query = $koneksi->query("INSERT INTO tb_jabatan(kd_jabatan, nama_jabatan)
-                                VALUE('$_POST[kd_jabatan]', '$_POST[nama_jabatan]')");
+                    $query = $koneksi->query("INSERT INTO tb_jabatan(kd_jabatan, jabatan)
+                                VALUE('$_POST[kd_jabatan]', '$_POST[jabatan]')");
                     if ($query) {
                 ?>
                         <script>
