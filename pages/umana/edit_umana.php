@@ -94,12 +94,12 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Jabatan</label>
-                                <select class="form-control" name="jabatan">
-                                    <option class="form-control" value="<?php echo $r->kd_jabatan; ?>"><?php echo $r->jabatan; ?> </option>";
+                                <select class="form-control" name="nama_jabatan">
+                                    <option class="form-control" value="<?php echo $r->kd_jabatan; ?>"><?php echo $r->nama_jabatan; ?> </option>";
                                     <?php
                                     $jabatan = $koneksi->query("SELECT * FROM tb_jabatan");
                                     while ($c = $jabatan->fetch_array()) {
-                                        echo "<option value= '$c[kd_jabatan]'>$c[jabatan]</option>";
+                                        echo "<option value= '$c[kd_jabatan]'>$c[nama_jabatan]</option>";
                                     }
                                     ?>
                                 </select>
@@ -136,7 +136,7 @@
                                                         alamat='$_POST[alamat]',
                                                         kd_instansi='$_POST[instansi]',
                                                         kd_status='$_POST[status]',
-                                                        kd_jabatan='$_POST[jabatan]',
+                                                        kd_jabatan='$_POST[nama_jabatan]',
                                                         password='$_POST[password]'
                                                         WHERE niu='$_POST[niu]'");
 

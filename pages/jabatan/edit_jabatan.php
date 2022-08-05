@@ -41,7 +41,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Nama Jabatan<span class="help"> e.x. "Guru"</label>
-                                <input type="text" id="" name="jabatan" class="form-control" value="<?php echo $r->jabatan; ?>" placeholder="Jabatan">
+                                <input type="text" id="" name="nama_jabatan" class="form-control" value="<?php echo $r->nama_jabatan; ?>" placeholder="Jabatan">
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                 </form>
                 <?php
                 if (@$_POST['simpan']) {
-                    $query = $koneksi->query("UPDATE tb_jabatan SET jabatan='$_POST[jabatan]' 
+                    $query = $koneksi->query("UPDATE tb_jabatan SET nama_jabatan='$_POST[nama_jabatan]' 
                                                         WHERE kd_jabatan='$_POST[kd_jabatan]'");
                     if ($query) {
                 ?>
