@@ -432,10 +432,26 @@
                                                 if (empty($r['jam_pulang'])) {
                                                     if (cekJam(9, 45)) {
 
+                                            ?>
+                                                    <script>
+                                                        setTimeout(sweetal, 10)
+
+                                                        function sweetal() {
+                                                            Swal.fire({
+                                                                position: 'center',
+                                                                icon: 'success',
+                                                                title: 'Absen pulang Berhasil',
+                                                                showConfirmButton: true,
+                                                                timer: 3000
+                                                            })
+                                                        }
+                                                    </script>
+                                                    <?php
+
                                                         $pulang = $db->query("UPDATE tb_absen SET jam_pulang='$jamcvk' WHERE niu='$niu' AND tanggal='$tgl'");
                                                         if ($pulang) {
 
-                                            ?>
+                                                    ?>
                                                         <script>
                                                             setTimeout(sweetal, 10)
 
@@ -486,7 +502,6 @@
                                                 <?php
                                                     }
                                                 } else {
-
                                                 ?>
                                                 <script>
                                                     setTimeout(sweetal, 10)
@@ -504,10 +519,37 @@
                                                 </script>
                                             <?php
                                                 }
+                                            } elseif (cekJam(9, 0)) {
+                                            ?>
+                                            <script>
+                                                setTimeout(sweetal, 10)
+
+                                                function sweetal() {
+                                                    Swal.fire({
+                                                        title: 'Anda terlambat?',
+                                                        text: "Anda ingin tetap Absen Masuk",
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        confirmButtonText: 'Iya'
+                                                    }).then((result) => {
+                                                        <?php $query = $db->query(" INSERT INTO tb_absen (tanggal, niu, kd_instansi, kd_jabatan, jam_masuk) VALUES ('$tgl', '$niu', '$_POST[instansi]', '$_POST[jabatan]','$jamcvk')");
+                                                        ?>
+                                                        if (result.isConfirmed) {
+                                                            Swal.fire({
+                                                                position: 'center',
+                                                                icon: 'success',
+                                                                title: 'Absen Hadir Berhasil',
+                                                            })
+                                                        }
+                                                    })
+                                                }
+                                            </script>
+                                            <?php
                                             } else {
                                                 $query = $db->query(" INSERT INTO tb_absen (tanggal, niu, kd_instansi, kd_jabatan, jam_masuk) VALUES ('$tgl', '$niu', '$_POST[instansi]', '$_POST[jabatan]','$jamcvk')");
                                                 if ($query) {
-
                                             ?>
                                                 <script>
                                                     setTimeout(sweetal, 10)
